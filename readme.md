@@ -1,14 +1,14 @@
 # Brazil Customer Attributes
 
-![Module Configurations](https://imgur.com/pqTS38g.png )
+![](https://imgur.com/pqTS38g.png )
 
-![New Account](https://imgur.com/vSACNr5 )
+![](https://imgur.com/vSACNr5 )
 
-![Edit Account](https://imgur.com/CpuyDjM.png )
+![](https://imgur.com/CpuyDjM.png )
 
-![New Address](https://imgur.com/igfXu19.png )
+![](https://imgur.com/igfXu19.png )
 
-![Checkout](https://i.imgur.com/vKqlkbD.png )
+![](https://i.imgur.com/vKqlkbD.png )
 
 ## About Module
 
