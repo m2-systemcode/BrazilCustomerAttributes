@@ -1,0 +1,26 @@
+.checkout-index-index{
+  .fieldset .field,
+  .fieldset .fields .field {
+    margin: 0 0 20px;
+  }
+  .fieldset .field.street{
+    margin: 0;
+    &>legend{
+      margin: 0;
+    }
+  }
+  .fieldset .field .label{
+    margin: 0 0 8px;
+    display: inline-block;
+  }
+
+  .fieldset .field.required .label:after,
+  .fieldset .fields .field.required .label:after,
+  .fieldset .field._required .label:after,
+  .fieldset .fields .field._required .label:after {
+    content: '*';
+    color: #e02b27;
+    font-size: 1.2rem;
+    margin: 0 0 0 5px;
+  }
+}

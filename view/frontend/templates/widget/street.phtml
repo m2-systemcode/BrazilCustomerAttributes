@@ -1,0 +1,54 @@
+<?php
+/**
+ *
+ * Street fields template
+ *
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   SystemCode
+ * @package    Systemcode_BrazilCustomerAttributes
+ * @author     Eduardo Diogo Dias <contato@systemcode.com.br>
+ * @copyright  System Code LTDA-ME
+ * @license    http://opensource.org/licenses/osl-3.0.php
+ */
+?>
+<?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+<?php $_streetLines = $this->helper('Magento\Customer\Helper\Address')->getStreetLines() ?>
+<div class="field street required">
+    <label for="street_1" class="label"><span><?php /* @escapeNotVerified */ echo __('Street Address') ?></span></label>
+    <div class="control">
+        <input type="text" name="street[0]" value="<?php echo $block->escapeHtml($block->getStreetLine(1)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address') ?>" id="street_1" class="input-text <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>"  />
+    </div>
+
+    <?php if($_streetLines>=2): ?>
+        <br>
+        <?php if($block->getSecondLineNumber()): ?>
+            <label for="street_2" class="label"><span><?php /* @escapeNotVerified */ echo __('Number') ?></span></label>
+        <?php endif; ?>
+        <div class="control">
+            <input type="text" name="street[1]" value="<?php echo $block->escapeHtml($block->getStreetLine(2)) ?>" title="<?php /* @escapeNotVerified */ echo __('Number') ?>" id="street_2" class="input-text required-entry"  />
+        </div>
+    <?php endif; ?>
+
+    <?php if($_streetLines>=3): ?>
+        <br>
+        <?php if($block->getThirdLineNeighborhood()): ?>
+            <label for="street_3" class="label"><span><?php /* @escapeNotVerified */ echo __('Neighborhood') ?></span></label>
+        <?php endif; ?>
+        <div class="control">
+            <input type="text" name="street[2]" value="<?php echo $block->escapeHtml($block->getStreetLine(3)) ?>" title="<?php /* @escapeNotVerified */ echo __('Neighborhood') ?>" id="street_3" class="input-text required-entry"  />
+        </div>
+    <?php endif; ?>
+</div>
+<div class="field street">
+    <?php if($_streetLines==4): ?>
+        <br>
+        <?php if($block->getFourthLineComplement()): ?>
+            <label for="street_4" class="label"><span><?php /* @escapeNotVerified */ echo __('Complement') ?></span></label>
+        <?php endif; ?>
+        <div class="control">
+            <input type="text" name="street[3]" value="<?php echo $block->escapeHtml($block->getStreetLine(4)) ?>" title="<?php /* @escapeNotVerified */ echo __('Complement') ?>" id="street_4" class="input-text"  />
+        </div>
+    <?php endif; ?>
+</div>

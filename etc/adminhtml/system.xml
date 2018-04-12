@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="systemcode" translate="label" sortOrder="101">
+            <label>System Code</label>
+        </tab>
+        <section id="brazilcustomerattributes" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Brazil Customer Attributes</label>
+            <tab>systemcode</tab>
+            <resource>Magento_Config::config_general</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="customer_edit" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Can Edit</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Customeredit</source_model>
+                    <comment>Choose witch fields can customer edit after account created.</comment>
+                </field>
+                <field id="copy_taxvat" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Copy CPF/CNPJ to Tax/VAT Number</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="customer_group_cpf" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group Individual Person</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Customergroup</source_model>
+                    <comment>Assign individual person to a group.</comment>
+                </field>
+                <field id="customer_group_cnpj" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group Corporation</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Customergroup</source_model>
+                    <comment>Assign corporation person to a group.</comment>
+                </field>
+                <field id="line_number" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Second Line of Street as Number</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '2'.</comment>
+                </field>
+                <field id="line_neighborhood" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Third Line of Street as Neighborhood</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '3'.</comment>
+                </field>
+                <field id="line_complement" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fourth Line of Street as Complement</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'.</comment>
+                </field>
+            </group>
+
+            <group id="cpf" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CPF</label>
+                <field id="cpf_show" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show CPF</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+                <field id="rg_show" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show RG</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+            </group>
+
+            <group id="cnpj" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CNPJ</label>
+                <field id="copy_firstname" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Firstname as Social Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'.</comment>
+                </field>
+                <field id="copy_lastname" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Lastname as Trade Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'.</comment>
+                </field>
+                <field id="cnpj_show" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show CNPJ</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+                <field id="ie_show" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show IE</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+                <field id="socialname_show" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Social Name</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+                <field id="tradename_show" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Trade Name</label>
+                    <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Nooptrequn</source_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array" >
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="additional-login-form-fields" xsi:type="array">
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- additional login form fields -->
+                                                                        <item name="captchacustom" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/form/element/email</item>
+                                                                            <item name="displayArea" xsi:type="string">additional-login-form-fields</item>
+                                                                            <item name="tooltip" xsi:type="array">
+                                                                                <item name="description" xsi:type="string" translate="true">We'll send your order confirmation here.</item>
+                                                                            </item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code</item>
+                                                                    <item name="sortOrder" xsi:type="string">40</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="elementTmpl" xsi:type="string">SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

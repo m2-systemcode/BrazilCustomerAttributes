@@ -1,0 +1,87 @@
+No,Não
+"Yes, except change person type","Sim, exceto mudar o tipo de pessoa"
+"Yes, and allow change person type","Sim, e permitir mudar o tipo de pessoa"
+Optional,Opcional
+Required,Obrigatório
+"Optional and Unique","Opcional e Único"
+"Required and Unique","Obrigatório e Único"
+"%fieldName is a required field.","%fieldName é um campo obrigatório."
+"%1 is invalid.","%1 é inválido."
+"%1 already in use.","%1 já está em uso."
+"* Required Fields","* Campos obrigatórios"
+"Contact Information","Informações de Contato"
+Company,Empresa
+"Phone Number","Número de Telefone"
+Fax,Fax
+Address,Endereço
+"VAT Number","Número VAT"
+City,Cidade
+State/Province,Estado
+"Please select a region, state or province.","Selecione uma região, estado ou província"
+"Zip/Postal Code","Código Postal"
+Country,País
+"It's a default billing address.","É um endereço de cobrança padrão."
+"Use as my default billing address","Usar como meu endereço de cobrança padrão"
+"It's a default shipping address.","É um endereço de envio padrão."
+"Use as my default shipping address","Usar como meu endereço de envio padrão"
+"Save Address","Salvar Endereço"
+"Go back","Voltar"
+"Account Information","Informações da Conta"
+"Change Email","Alterar E-mail"
+"Change Password","Alterar Senha"
+"Change Email and Password","Alterar E-mail e Senha"
+Email,E-mail
+"Current Password","Senha Atual"
+"New Password","Nova Senha"
+"Password Strength","Força da Senha"
+"No Password","Sem Senha"
+"Confirm New Password","Confirmar Nova Senha"
+Save,Salvar
+"Personal Information","Informações Pessoais"
+"Sign Up for Newsletter","Inscreva-se para Boletim Informativo"
+"Address Information","Informações do Endereço"
+"Sign-in Information","Informações da sessão"
+Password,Senha
+"Confirm Password","Confirmar Senha"
+"Create an Account","Criar uma Conta"
+Back,Voltar
+"Individual Person","Pessoa Física"
+Corporation,Pessoa Jurídica
+CPF,CPF
+RG,RG
+CNPJ,CNPJ
+"Social Name","Razão Social"
+"Trade Name","Nome Fantasia"
+IE,IE
+"Street Address","Endereço"
+Number,Número
+Neighborhood,Bairro
+Complement,Complemento
+"Not a valid Membership ID","ID de membro inválida"
+"Brazil Customer Attributes","Atributos do Cliente do Brasil"
+Configuration,Configuração
+Enabled,Ativado
+"Customer Can Edit","Cliente Pode Editar"
+"Copy CPF/CNPJ to Tax/VAT Number","Copiar CPF/CNPJ para o Número de Tax/VAT"
+"Customer Group Individual Person","Grupo de Clientes do CPF"
+"Customer Group Corporation","Grupo de Clientes do CNPJ"
+"Second Line of Street as Number","Segunda Linha de Rua como Número"
+"Third Line of Street as Neighborhood","Terceira Linha de Rua como Bairro"
+"Fourth Line of Street as Complement","Quarta Linha de Rua como Complemento"
+"Show CPF","Exibir CPF"
+"Show RG","Exibir RG"
+"Use Firstname as Social Name","Usar Primeiro Nome como Razão Social"
+"Use Lastname as Trade Name	","Usar Último Nome como Nome Fantasia"
+"Show CNPJ","Exibir CNPJ"
+"Show Social Name","Exibir Razão Social"
+"Show Trade Name","Exibir Nome Fantasia"
+"Show IE","Exibir IE"
+Loading,Carregando
+"Choose witch fields can customer edit after account created.","Escolha quais campos o cliente pode editar ápos criado a conta."
+"Assign individual person to a group.","Atribuir pessoa física a um grupo."
+"Assign corporation person to a group.","Atribuir pessoa jurídica a um grupo."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '2'.","Acesse 'Lojas > Configurações > Clientes > Configurações de cliente > Opções de Nome e Endereço' e em 'Número de Linhas em Endereço' coloque '2'."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '3'.","Acesse 'Lojas > Configurações > Clientes > Configurações de cliente > Opções de Nome e Endereço' e em 'Número de Linhas em Endereço' coloque '3'."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'.","Acesse 'Lojas > Configurações > Clientes > Configurações de cliente > Opções de Nome e Endereço' e em 'Número de Linhas em Endereço' coloque '4'."
+"It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'.","Isso tornará a 'Razão Social' obrigatório. Altere 'Exibir Razão Social' para 'Não'."
+"It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'.","Isso tornará o 'Nome Fantasia' um campo obrigatório. Altere 'Show Trade Name' para 'Não'."

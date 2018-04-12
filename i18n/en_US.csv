@@ -1,0 +1,87 @@
+No,No
+"Yes, except change person type","Yes, except change person type"
+"Yes, and allow change person type","Yes, and allow change person type"
+Optional,Optional
+Required,Required
+"Optional and Unique","Optional and Unique"
+"Required and Unique","Required and Unique"
+"%fieldName is a required field.","%fieldName is a required field."
+"%1 is invalid.","%1 is invalid."
+"%1 already in use.","%1 already in use."
+"* Required Fields","* Required Fields"
+"Contact Information","Contact Information"
+Company,Company
+"Phone Number","Phone Number"
+Fax,Fax
+Address,Address
+"VAT Number","VAT Number"
+City,City
+State/Province,State/Province
+"Please select a region, state or province.","Please select a region, state or province."
+"Zip/Postal Code","Zip/Postal Code"
+Country,Country
+"It's a default billing address.","It's a default billing address."
+"Use as my default billing address","Use as my default billing address"
+"It's a default shipping address.","It's a default shipping address."
+"Use as my default shipping address","Use as my default shipping address"
+"Save Address","Save Address"
+"Go back","Go back"
+"Account Information","Account Information"
+"Change Email","Change Email"
+"Change Password","Change Password"
+"Change Email and Password","Change Email and Password"
+Email,Email
+"Current Password","Current Password"
+"New Password","New Password"
+"Password Strength","Password Strength"
+"No Password","No Password"
+"Confirm New Password","Confirm New Password"
+Save,Save
+"Personal Information","Personal Information"
+"Sign Up for Newsletter","Sign Up for Newsletter"
+"Address Information","Address Information"
+"Sign-in Information","Sign-in Information"
+Password,Password
+"Confirm Password","Confirm Password"
+"Create an Account","Create an Account"
+Back,Back
+"Individual Person","Individual Person"
+Corporation,Corporation
+CPF,CPF
+RG,RG
+CNPJ,CNPJ
+"Social Name","Social Name"
+"Trade Name","Trade Name"
+IE,IE
+"Street Address","Street Address"
+Number,Number
+Neighborhood,Neighborhood
+Complement,Complement
+"Not a valid Membership ID","Not a valid Membership ID"
+"Brazil Customer Attributes","Brazil Customer Attributes"
+Configuration,Configuration
+Enabled,Enabled
+"Customer Can Edit","Customer Can Edit"
+"Copy CPF/CNPJ to Tax/VAT Number","Copy CPF/CNPJ to Tax/VAT Number"
+"Customer Group Individual Person","Customer Group CPF"
+"Customer Group Corporation","Customer Group CNPJ"
+"Second Line of Street as Number","Second Line of Street as Number"
+"Third Line of Street as Neighborhood","Third Line of Street as Neighborhood"
+"Fourth Line of Street as Complement","Fourth Line of Street as Complement"
+"Show CPF","Show CPF"
+"Show RG","Show RG"
+"Use Firstname as Social Name","Use Firstname as Social Name"
+"Use Lastname as Trade Name	","Use Lastname as Trade Name"
+"Show CNPJ","Show CNPJ"
+"Show IE","Show IE"
+"Show Social Name","Show Social Name"
+"Show Trade Name","Show Trade Name"
+Loading,Loading
+"Choose witch fields can customer edit after account created.","Choose witch fields can customer edit after account created."
+"Assign individual person to a group.","Assign individual person to a group."
+"Assign corporation person to a group.","Assign corporation person to a group."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '2'.","Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '2'."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '3'.","Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '3'."
+"Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'.","Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'."
+"It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'.","It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'."
+"It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'.","It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'."

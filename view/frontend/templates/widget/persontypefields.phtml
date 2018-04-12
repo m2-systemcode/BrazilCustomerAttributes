@@ -1,0 +1,136 @@
+<?php
+/**
+ *
+ * Person type fields template
+ *
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   SystemCode
+ * @package    Systemcode_BrazilCustomerAttributes
+ * @author     Eduardo Diogo Dias <contato@systemcode.com.br>
+ * @copyright  System Code LTDA-ME
+ * @license    http://opensource.org/licenses/osl-3.0.php
+ */
+?>
+<?php if($block->showCpf): ?>
+    <div class="field fieldset individual" data-container="type-individual">
+        <?php if($block->getStatus("show", "cpf", "cpf")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cpf", "cpf")?" required":"") ?>">
+                <label for="cpf" class="label"><span><?php /* @escapeNotVerified */ echo __('CPF') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           id="cpf"
+                           name="cpf"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("cpf")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('CPF') ?>"
+                           class="input-text"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cpf", "cpf"), true) ?>, 'validate-cpf':true}">
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if($block->getStatus("show", "cpf", "rg")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cpf", "rg")?" required":"") ?>">
+                <label for="rg" class="label"><span><?php /* @escapeNotVerified */ echo __('RG') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           id="rg"
+                           name="rg"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("rg")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('RG') ?>"
+                           class="input-text"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cpf", "rg"), true) ?>}" >
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+<?php endif; ?>
+
+<?php if($block->showCnpj): ?>
+    <div class="field fieldset corporation" data-container="type-corporation">
+
+        <?php if($block->getStatus("show", "cnpj", "socialname")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cnpj", "socialname")?" required":"") ?>">
+                <label for="socialname" class="label"><span><?php /* @escapeNotVerified */ echo __('Social Name') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           id="socialvalue"
+                           name="socialname"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("socialname")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('Social Name') ?>"
+                           class="input-text"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cnpj", "socialname"), true) ?>, 'validate-cpf':true}" >
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if($block->getStatus("show", "cnpj", "tradename")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cnpj", "tradename")?" required":"") ?>">
+                <label for="tradename" class="label"><span><?php /* @escapeNotVerified */ echo __('Trade Name') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           id="tradevalue"
+                           name="tradename"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("tradename")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('Trade Name') ?>"
+                           class="input-text"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cnpj", "tradename"), true) ?>}" >
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if($block->getStatus("show", "cnpj", "cnpj")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cnpj", "cnpj")?" required":"") ?>">
+                <label for="cnpj" class="label"><span><?php /* @escapeNotVerified */ echo __('CNPJ') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           id="cnpj"
+                           name="cnpj"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("cnpj")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('CNPJ') ?>"
+                           class="input-text"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cnpj", "cnpj"), true) ?>}" >
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if($block->getStatus("show", "cnpj", "ie")): ?>
+            <div class="field<?php echo ($block->getStatus("required", "cnpj", "ie")?" required":"") ?>">
+                <label for="ie" class="label"><span><?php /* @escapeNotVerified */ echo __('IE') ?></span></label>
+                <div class="control">
+                    <input type="text"
+                           name="ie"
+                           value="<?php echo $block->escapeHtml($block->getCustomerValue("ie")) ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('IE') ?>"
+                           class="input-text"
+                           id="ie"
+                           data-validate="{required:<?php echo var_export($block->getStatus("required", "cnpj", "ie"), true) ?>}" >
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=type-individual], [data-role=type-corporation]": {
+            "changePersonType" : {
+                "changeFirstnameLabel": <?php echo ($block->getConfigAdmin("cnpj", "copy_firstname")?"true":"false"); ?>,
+                "changeLastnameLabel": <?php echo ($block->getConfigAdmin("cnpj", "copy_lastname")?"true":"false"); ?>
+            }
+        }
+    }
+</script>
+
+<script>
+    require([
+        'jquery',
+        'inputMask'
+    ], function ($) {
+        $('#cpf').mask('000.000.000-00', {clearIfNotMatch: true});
+        $('#cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true});
+    });
+</script>

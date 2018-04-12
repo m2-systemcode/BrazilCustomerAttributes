@@ -1,0 +1,20 @@
+{
+    "name": "systemcode/module-brazilcustomerattributes",
+    "description": "Brazil Customer Attributes",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "System Code LTDA-ME",
+            "email": "contato@systemcode.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "SystemCode\\BrazilCustomerAttributes\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
