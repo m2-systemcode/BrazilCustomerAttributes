@@ -38,7 +38,7 @@ To contribute make project fork and an pull request or edit on Github.
 ### Licensa
 OSL-3.0
 
-### Autores
+### Authors
 * [Eduardo Diogo Dias](https://github.com/eduardoddias)
 
 ## Sobre o Módulo
@@ -55,7 +55,6 @@ php bin/magento setup:upgrade
 ```
 Configure o módulo em Lojas > Opções > Configurações > System Code > Atributos do Cliente do Brasil
 
-
 ### TODO
 * Refatorar
 * Testes unitários
@@ -67,7 +66,7 @@ Configure o módulo em Lojas > Opções > Configurações > System Code > Atribu
 ### Contribuir
 Para contribuir faça um fork do projeto e depois um pull request ou edite através do Github.
 
-### Licensa
+### Licença
 OSL-3.0
 
 ### Autores
