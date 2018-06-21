@@ -1,0 +1,27 @@
+<?php
+/**
+ *
+ * Street prefix field template
+ *
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   SystemCode
+ * @package    Systemcode_BrazilCustomerAttributes
+ * @author     Eduardo Diogo Dias <contato@systemcode.com.br>
+ * @copyright  System Code LTDA-ME
+ * @license    http://opensource.org/licenses/osl-3.0.php
+ */
+?>
+<?php if($block->getIsEnabled()):?>
+<div class="field street_prefix required">
+    <label class="label" for="street_prefix"><span><?php /* @escapeNotVerified */ echo __('Street Prefix') ?></span></label>
+    <div class="control">
+        <select id="street_prefix" name="street_prefix" title="<?php /* @escapeNotVerified */ echo __('Street Prefix') ?>" class="validate-select">
+            <?php foreach ($block->getStreetPrefixOptions() as $opt): ?>
+                <option <?php echo $block->getCurrentStreetPrefix()==$opt["value"]?'selected':'' ?> value="<?php echo $opt["value"] ?>"><?php echo $opt["label"] ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
+<?php endif; ?>

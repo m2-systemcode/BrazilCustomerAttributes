@@ -1,0 +1,12 @@
+<input class="input-text" type="text" data-bind="
+    value: value,
+    valueUpdate: 'keyup',
+    hasFocus: focused,
+    attr: {
+        name: inputName,
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        id: uid,
+        disabled: disabled
+    }" />
+<i data-bind="visible: loading"> <!-- ko i18n: 'Loading' --><!-- /ko --></i>

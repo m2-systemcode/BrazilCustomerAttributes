@@ -1,6 +1,6 @@
 <?php
 
-namespace Systemcode\BrazilCustomerAttributes\Block\Magento\Customer\Widget;
+namespace SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget;
 
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
 use Magento\Customer\Api\CustomerMetadataInterface;

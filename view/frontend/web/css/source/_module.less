@@ -1,26 +1,36 @@
-.checkout-index-index{
-  .fieldset .field,
-  .fieldset .fields .field {
-    margin: 0 0 20px;
-  }
-  .fieldset .field.street{
-    margin: 0;
-    &>legend{
-      margin: 0;
-    }
-  }
-  .fieldset .field .label{
-    margin: 0 0 8px;
-    display: inline-block;
-  }
+//
+//  Common
+//  _____________________________________________
 
-  .fieldset .field.required .label:after,
-  .fieldset .fields .field.required .label:after,
-  .fieldset .field._required .label:after,
-  .fieldset .fields .field._required .label:after {
-    content: '*';
-    color: #e02b27;
-    font-size: 1.2rem;
-    margin: 0 0 0 5px;
+& when (@media-common = true) {
+  .checkout-index-index{
+    html, body{
+      background: red !important;
+    }
+    .fieldset .field,
+    .fieldset .fields .field {
+      margin: 0 0 20px;
+    }
+    .fieldset .field.street{
+      margin: 0;
+      &>legend{
+        margin: 0;
+      }
+    }
+    .fieldset .field .label{
+      display: inline !important;
+      position: initial !important;
+      overflow: initial !important;
+      font-weight: 600;
+    }
+    .fieldset .field.required .label:after,
+    .fieldset .fields .field.required .label:after,
+    .fieldset .field._required .label:after,
+    .fieldset .fields .field._required .label:after {
+      content: '*';
+      color: #e02b27;
+      font-size: 1.2rem;
+      margin: 0 0 0 5px;
+    }
   }
 }

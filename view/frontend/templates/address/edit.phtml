@@ -54,6 +54,8 @@
             </div>
         </div>
 
+        <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\Streetprefix')->toHtml() ?>
+
         <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\Streetedit')->toHtml() ?>
 
         <?php if ($this->helper('Magento\Customer\Helper\Address')->isVatAttributeVisible()) : ?>

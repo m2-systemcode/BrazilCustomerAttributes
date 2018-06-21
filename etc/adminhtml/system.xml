@@ -33,6 +33,16 @@
                     <source_model>SystemCode\BrazilCustomerAttributes\Model\Config\Source\Customergroup</source_model>
                     <comment>Assign corporation person to a group.</comment>
                 </field>
+                <field id="prefix_enabled" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Prefix Address</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="prefix_options" translate="label comment" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Prefix Address Options</label>
+                    <frontend_model>SystemCode\BrazilCustomerAttributes\Block\Adminhtml\Form\Field\Prefixoptions</frontend_model>
+                    <backend_model>SystemCode\BrazilCustomerAttributes\Config\Backend\Prefixoptions</backend_model>
+                    <comment>One option per line. Like Street, Avenue, Street Cross, etc...</comment>
+                </field>
                 <field id="line_number" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Second Line of Street as Number</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

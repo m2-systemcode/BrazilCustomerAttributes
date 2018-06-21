@@ -18,10 +18,12 @@ use Magento\Customer\Api\CustomerMetadataInterface;
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Streetedit extends \Magento\Customer\Block\Address\Edit
+class Streetprefix extends \Magento\Customer\Block\Address\Edit
 {
 
     protected $helper;
+
+    protected $streetprefix;
 
     /**
      * Create an instance of the Gender widget
@@ -52,9 +54,11 @@ class Streetedit extends \Magento\Customer\Block\Address\Edit
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
         \Magento\Framework\Api\DataObjectHelper $dataObjectHelper,
         Helper $helper,
+        \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix,
         array $data = []
     ) {
         $this->helper = $helper;
+        $this->streetprefix = $streetprefix;
 
         parent::__construct(
             $context,
@@ -80,34 +84,38 @@ class Streetedit extends \Magento\Customer\Block\Address\Edit
     public function _construct()
     {
         parent::_construct();
-        $this->setTemplate('SystemCode_BrazilCustomerAttributes::widget/street.phtml');
+        $this->setTemplate('SystemCode_BrazilCustomerAttributes::widget/streetprefix.phtml');
     }
 
     /**
-     * Check if gender attribute enabled in system
+     * Check if street prefix is enabled
      * @return bool
      */
-    public function getSecondLineNumber()
+    public function getIsEnabled()
     {
-        return $this->helper->getConfig("brazilcustomerattributes/general/line_number");
+        return $this->helper->getConfig("brazilcustomerattributes/general/prefix_enabled");
     }
 
     /**
-     * Check if gender attribute enabled in system
-     * @return bool
+     * Check if street prefix is enabled
+     * @return array
      */
-    public function getThirdLineNeighborhood()
+    public function getStreetPrefixOptions()
     {
-        return $this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood");
+        return $this->streetprefix->getAllOptions();
     }
 
+
     /**
-     * Check if gender attribute enabled in system
-     * @return bool
+     * Check if address already has street prefix
+     * @return value
      */
-    public function getFourthLineComplement()
+    public function getCurrentStreetPrefix()
     {
-        return $this->helper->getConfig("brazilcustomerattributes/general/line_complement");
+        if(null != ($current = $this->getAddress()->getCustomAttribute('street_prefix'))){
+            return $current->getValue();
+        }
+        return;
     }
 
 }
