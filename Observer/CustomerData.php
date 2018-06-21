@@ -56,9 +56,9 @@ class CustomerData implements \Magento\Framework\Event\ObserverInterface
                 $customer->setRg();
             }
 
-            if(isset($params["cpf"])){
+            if(isset($params["cpf"]) && $params["cpf"]!=""){
                 $document = $params["cpf"];
-            }else if(isset($params["cnpj"])){
+            }else if(isset($params["cnpj"]) && $params["cnpj"]!=""){
                 $document = $params["cnpj"];
             }
 
