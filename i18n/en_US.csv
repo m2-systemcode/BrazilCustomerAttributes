@@ -85,3 +85,11 @@ Loading,Loading
 "Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'.","Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'."
 "It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'.","It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'."
 "It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'.","It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'."
+"Enable Prefix Address","Enable Prefix Address"
+"Prefix Address Options","Prefix Address Options"
+"Examples: Street, Avenue, Street Cross, etc...","Exemplos: Rua, Avenida, Travessa, etc..."
+"Prefix Address Options","Prefix Address Options"
+Options,Options
+"Add Option","Add Option"
+"Street Prefix","Street Prefix"
+"Please select a street prefix.","Please select a street prefix."

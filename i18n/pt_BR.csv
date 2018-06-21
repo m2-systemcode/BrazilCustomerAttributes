@@ -85,3 +85,9 @@ Loading,Carregando
 "Go to 'Stores > Configuration > Customers > Customer Configuration > Name and Address Options' and set 'Number of Lines in a Street Address' to '4'.","Acesse 'Lojas > Configurações > Clientes > Configurações de cliente > Opções de Nome e Endereço' e em 'Número de Linhas em Endereço' coloque '4'."
 "It will turn 'Social Name' a required field. Set 'Show Social Name' to 'No'.","Isso tornará a 'Razão Social' obrigatório. Altere 'Exibir Razão Social' para 'Não'."
 "It will turn 'Last Name' a required field. Set 'Show Trade Name' to 'No'.","Isso tornará o 'Nome Fantasia' um campo obrigatório. Altere 'Show Trade Name' para 'Não'."
+"Examples: Street, Avenue, Street Cross, etc...","Explos: Street, Avenue, Street Cross, etc..."
+"Prefix Address Options","Opção de Logradouro"
+Options,Opções
+"Add Option","Adicionar Opção"
+"Street Prefix",Logradouro
+"Please select a street prefix.","Por favor selecione o logradouro."

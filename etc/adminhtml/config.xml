@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <brazilcustomerattributes>
+            <general>
+                <enabled>0</enabled>
+                <customer_edit>yes</customer_edit>
+                <copy_taxvat>1</copy_taxvat>
+                <customer_group_cpf>1</customer_group_cpf>
+                <customer_group_cnpj>3</customer_group_cnpj>
+                <prefix_enabled>false</prefix_enabled>
+                <prefix_options></prefix_options>
+                <line_number>1</line_number>
+                <line_neighborhood>1</line_neighborhood>
+                <line_complement>1</line_complement>
+            </general>
+            <cpf>
+                <cpf_show>requni</cpf_show>
+                <rg_show>req</rg_show>
+            </cpf>
+            <cnpj>
+                <copy_firstname>1</copy_firstname>
+                <copy_lastname>1</copy_lastname>
+                <cnpj_show>requni</cnpj_show>
+                <ie_show>opt</ie_show>
+                <socialname_show></socialname_show>
+                <tradename_show></tradename_show>
+            </cnpj>
+        </brazilcustomerattributes>
+    </default>
+</config>
