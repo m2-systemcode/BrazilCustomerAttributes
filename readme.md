@@ -32,7 +32,7 @@ Configure module on Stores > Settings > Configuration > System Code > Brazil Cus
 * One Step Checkout (future module)
 * Add module to Composer
 
-### Contribuir
+### Contribute
 To contribute make project fork and an pull request or edit on Github.
 
 ### Licensa
@@ -40,6 +40,10 @@ OSL-3.0
 
 ### Authors
 * [Eduardo Diogo Dias](https://github.com/eduardoddias)
+
+
+===============================================================================================
+
 
 ## Sobre o Módulo
 
