@@ -167,13 +167,13 @@ class InstallData implements InstallDataInterface
 
         
         // REGISTER THE FIELD TRADE NAME
-        $customerSocialNameAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'tradename');
-        $customerSocialNameAttribute->addData([
+        $customerTradeNameAttribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'tradename');
+        $customerTradeNameAttribute->addData([
             'attribute_set_id' => $attributeSetId,
             'attribute_group_id' => $attributeGroupId,
             'used_in_forms' => ['adminhtml_customer','checkout_register','customer_account_create','customer_account_edit','adminhtml_checkout'],
         ]);
-        $customerSocialNameAttribute->save();
+        $customerTradeNameAttribute->save();
 
 
         // REGISTER THE FIELD IE
