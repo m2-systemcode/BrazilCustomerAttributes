@@ -115,7 +115,7 @@ class LayoutProcessorPlugin
                     'id' => 'street-prefix'
                 ],
                 'dataScope' => 'shippingAddress.custom_attributes.street_prefix',
-                'label' => 'Street Prefix',
+                'label' => __('Street Prefix'),
                 'provider' => 'checkoutProvider',
                 'visible' => true,
                 'validation' => [
@@ -216,7 +216,7 @@ class LayoutProcessorPlugin
                             'id' => 'street-prefix'
                         ],
                         'dataScope' => 'billingAddress' . $paymentMethodCode . '.custom_attributes.street_prefix', //billingAddresscheckmo.city
-                        'label' => 'Street Prefix',
+                        'label' => __('Street Prefix'),
                         'provider' => 'checkoutProvider',
                         'visible' => true,
                         'validation' => [
