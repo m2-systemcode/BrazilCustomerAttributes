@@ -147,23 +147,30 @@
         'inputMask',
         'mage/url'
     ], function ($, mask, url) {
-        $("#postcode").mask('00000-000', {clearIfNotMatch: true});
-        $('#postcode').change(function(){
-            zipcode = $(this).val().replace('-', '');
-            var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
-
-            $.getJSON(ajaxurl, null, function(data) {
-                if(data.error){
-                    // TODO
-                }else{
-                    $("#street_1").val(data.street);
-                    $("#street_3").val(data.neighborhood);
-                    $("#street_4").val(data.complement);
-                    $("#city").val(data.city);
-                    $("#country").val('BR');
-                    $("#region_id").val(data.uf);
-                }
-            });
+        $('#postcode').keyup(function(){
+            var country = jQuery("[name=country_id]").val()
+            if (country=='BR') {
+                $("#postcode").mask('00000-000', {clearIfNotMatch: true});
+            } else {
+                jQuery('#'+this.uid).unmask();
+            }
+            var zipcode = $(this).val().replace('-', '');
+            if(zipcode.length == 8 && country =='BR'){
+                var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
+                $.getJSON(ajaxurl, null, function(data) {
+                    if(data.error){
+                        // TODO
+                    }else{
+                        $("#street_1").val(data.street);
+                        $("#street_3").val(data.neighborhood);
+                        $("#street_4").val(data.complement);
+                        $("#city").val(data.city);
+                        $("#country").val('BR');
+                        $("#region_id").val(data.uf);
+                        $("#street_2").focus();
+                    }
+                });
+            }
         });
     });
 </script>
