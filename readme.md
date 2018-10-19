@@ -31,6 +31,7 @@ Configure module on Stores > Settings > Configuration > System Code > Brazil Cus
 * Add mask for fields on admin
 * One Step Checkout (future module)
 * Add module to Composer
+* Add other zipcode consult methods
 
 ### Contribute
 To contribute make project fork and an pull request or edit on Github.
@@ -66,6 +67,7 @@ Configure o módulo em Lojas > Opções > Configurações > System Code > Atribu
 * Adicionar máscaras no admin
 * One Step Checkout (módulo futuro)
 * Adicionar módulo no Composer
+* Adicionar outros métodos de consulta de CEP
 
 ### Contribuir
 Para contribuir faça um fork do projeto e depois um pull request ou edite através do Github.
