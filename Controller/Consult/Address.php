@@ -59,7 +59,7 @@ class Address extends \Magento\Framework\App\Action\Action
                     'zipcode' => $zipcode,
                     'street' => $result->return->end,
                     'neighborhood' => $result->return->bairro,
-                    'complement' => $result->return->complemento,
+                    'complement' => $result->return->complemento2,
                     'city' => $result->return->cidade,
                     'uf' => $this->helper->getRegionId($result->return->uf)
                 ];
