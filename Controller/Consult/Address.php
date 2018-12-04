@@ -54,12 +54,13 @@ class Address extends \Magento\Framework\App\Action\Action
             }
 
             if(isset($result)){
+                $complement = trim(implode(' ', array($result->return->complemento??'', $result->return->complemento2??'')));
                 $data = [
                     'error' => false,
                     'zipcode' => $zipcode,
                     'street' => $result->return->end,
                     'neighborhood' => $result->return->bairro,
-                    'complement' => $result->return->complemento,
+                    'complement' => $complement,
                     'city' => $result->return->cidade,
                     'uf' => $this->helper->getRegionId($result->return->uf)
                 ];
