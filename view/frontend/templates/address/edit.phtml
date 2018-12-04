@@ -152,7 +152,12 @@
             zipcode = $(this).val().replace('-', '');
             var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
 
-            $.getJSON(ajaxurl, null, function(data) {
+            jquery.ajax({
+                url: ajaxurl,
+                dataType: 'json',
+                timeout: 4000,
+                async: true
+            }).done(function (data) {
                 if(data.error){
                     // TODO
                 }else{
@@ -163,7 +168,8 @@
                     $("#country").val('BR');
                     $("#region_id").val(data.uf);
                 }
-            });
+                jquery('#checkout-loader').remove();
+            }).error(function(){});
         });
     });
 </script>

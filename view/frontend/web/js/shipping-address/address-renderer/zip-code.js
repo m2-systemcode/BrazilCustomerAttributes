@@ -73,7 +73,11 @@ define([
 
                 var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+value);
 
-                jquery.getJSON(ajaxurl, null, function(data) {
+                jquery.ajax({
+                    url: ajaxurl,
+                    dataType: 'json',
+                    timeout: 4000
+                }).done(function (data) {
                     if(data.error){
                         // TODO
                     }else{
@@ -96,6 +100,8 @@ define([
                             registry.get(element.parentName + '.' + 'country_id').value('BR');
                         }
                     }
+                    jquery('#checkout-loader').remove();
+                }).error(function(){
                     jquery('#checkout-loader').remove();
                 });
             }else{
