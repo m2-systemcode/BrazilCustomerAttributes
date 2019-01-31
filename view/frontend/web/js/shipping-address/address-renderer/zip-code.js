@@ -73,11 +73,7 @@ define([
 
                 var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+value);
 
-                jquery.ajax({
-                    url: ajaxurl,
-                    dataType: 'json',
-                    timeout: 4000
-                }).done(function (data) {
+                jquery.getJSON(ajaxurl, function(data) {
                     if(data.error){
                         // TODO
                     }else{
