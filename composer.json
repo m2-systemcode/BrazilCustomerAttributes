@@ -1,20 +1,48 @@
 {
-    "name": "systemcode/module-brazilcustomerattributes",
-    "description": "Brazil Customer Attributes",
-    "license": "proprietary",
+    "name": "systemcode/brazilcustomerattributes",
+    "description":"Magento 2 module to adapt customer and address fields to brazil.",
+    "keywords": [
+        "magento 2",
+        "brazil fields",
+        "campos brasil",
+        "magento2 campos",
+        "magento2 endereço",
+        "magento2 address brazil",
+        "magento2 person type",
+        "magento2 pessoa física",
+        "magento2 pessoa jurídica",
+        "magento2 tipo  pessoa"
+    ],
+    "require": {
+        "php": "~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.1.3|~7.2.0",
+        "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*",
+        "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*",
+        "systemcode/base": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "homepage": "https://www.systemcode.com.br/",
+    "support": {
+        "email": "contato@systemcode.com.br",
+        "issues": "https://github.com/eduardoddias/Magento-SystemCode_BrazilCustomerAttributes/issues/"
+    },
     "authors": [
         {
-            "name": "System Code LTDA-ME",
-            "email": "contato@systemcode.com.br"
+            "name": "Eduardo Diogo Dias",
+            "email": "contato@systemcode.com.br",
+            "homepage": "https://www.systemcode.com.br/",
+            "role": "CTO"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
-        "psr-4": {
-            "SystemCode\\BrazilCustomerAttributes\\": ""
-        },
         "files": [
             "registration.php"
-        ]
+        ],
+        "psr-4": {
+            "SystemCode\\BrazilCustomerAttributes\\": ""
+        }
     }
 }

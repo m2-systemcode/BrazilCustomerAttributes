@@ -17,23 +17,6 @@ namespace SystemCode\BrazilCustomerAttributes\Observer;
  */
 class QuoteToOrder implements \Magento\Framework\Event\ObserverInterface
 {
-
-    /**
-     * @var \Magento\Framework\DataObject\Copy
-     */
-    protected $objectCopyService;
-
-
-    /**
-     * @param \Magento\Framework\DataObject\Copy $objectCopyService
-     */
-    public function __construct(
-        \Magento\Framework\DataObject\Copy $objectCopyService
-    )
-    {
-        $this->objectCopyService = $objectCopyService;
-    }
-
     /**
      *
      * @param \Magento\Framework\Event\Observer $observer

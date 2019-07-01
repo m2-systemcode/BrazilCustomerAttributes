@@ -142,6 +142,11 @@ class LayoutProcessorPlugin
         ['children']['shippingAddress']['children']['shipping-address-fieldset']
         ['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
 
+        // Telephone
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+        ['children']['shippingAddress']['children']['shipping-address-fieldset']
+        ['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
         return $jsLayout;
     }
 
@@ -242,6 +247,11 @@ class LayoutProcessorPlugin
                 $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
                 ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
                 ['form-fields']['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
+
+                // Telephone
+                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                ['form-fields']['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
             }
         }
 

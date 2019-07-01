@@ -74,19 +74,15 @@
         <fieldset class="fieldset address">
             <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Address Information') ?></span></legend><br>
             <input type="hidden" name="create_address" value="1" />
-            <div class="field company">
-                <label for="company" class="label"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
+
+            <div class="field zip required">
+                <label for="zip" class="label"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
                 <div class="control">
-                    <input type="text" name="company" id="company" value="<?php echo $block->escapeHtml($block->getFormData()->getCompany()) ?>" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
-                </div>
-            </div>
-            <div class="field telephone">
-                <label for="telephone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
-                <div class="control">
-                    <input type="text" name="telephone" id="telephone" value="<?php echo $block->escapeHtml($block->getFormData()->getTelephone()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('telephone') ?>">
+                    <input type="text" id="postcode" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="input-text validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
                 </div>
             </div>
 
+            <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\StreetprefixRegister')->toHtml() ?>
             <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\Street')->toHtml() ?>
 
             <div class="field required">
@@ -106,13 +102,6 @@
                 </div>
             </div>
 
-            <div class="field zip required">
-                <label for="zip" class="label"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
-                <div class="control">
-                    <input type="text" id="postcode" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="input-text validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
-                </div>
-            </div>
-
             <div class="field country required">
                 <label for="country" class="label"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
                 <div class="control">
@@ -126,6 +115,20 @@
                 <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
                 <?php echo $addressAttributes->setShowContainer(false)->toHtml()?>
             <?php endif;?>
+
+            <div class="field company">
+                <label for="company" class="label"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
+                <div class="control">
+                    <input type="text" name="company" id="company" value="<?php echo $block->escapeHtml($block->getFormData()->getCompany()) ?>" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
+                </div>
+            </div>
+            <div class="field telephone">
+                <label for="telephone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                <div class="control">
+                    <input type="text" name="telephone" id="telephone" value="<?php echo $block->escapeHtml($block->getFormData()->getTelephone()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('telephone') ?>">
+                </div>
+            </div>
+
             <input type="hidden" name="default_billing" value="1">
             <input type="hidden" name="default_shipping" value="1">
         </fieldset>
@@ -180,8 +183,7 @@
 <script>
 require([
     'jquery',
-    'mage/mage',
-    'inputMask'
+    'mage/mage'
 ], function($){
 
     var dataForm = $('#form-validate');
@@ -206,9 +208,6 @@ require([
         ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
     <?php endif ?>
     }).find('input:text').attr('autocomplete', 'off');
-
-    $('#postcode').mask('00000-000', {clearIfNotMatch: true});
-
 });
 </script>
 <?php if ($block->getShowAddressFields()): ?>

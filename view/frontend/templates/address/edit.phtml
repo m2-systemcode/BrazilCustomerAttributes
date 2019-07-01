@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\Streetprefix')->toHtml() ?>
+        <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\StreetprefixEdit')->toHtml() ?>
 
         <?php echo $block->getLayout()->createBlock('SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget\Streetedit')->toHtml() ?>
 
@@ -139,37 +139,4 @@
             }
         }
     }
-</script>
-
-<script>
-    require([
-        'jquery',
-        'inputMask',
-        'mage/url'
-    ], function ($, mask, url) {
-        $("#postcode").mask('00000-000', {clearIfNotMatch: true});
-        $('#postcode').change(function(){
-            zipcode = $(this).val().replace('-', '');
-            var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
-
-            $.ajax({
-                url: ajaxurl,
-                dataType: 'json',
-                timeout: 4000,
-                async: true
-            }).done(function (data) {
-                if(data.error){
-                    // TODO
-                }else{
-                    $("#street_1").val(data.street);
-                    $("#street_3").val(data.neighborhood);
-                    $("#street_4").val(data.complement);
-                    $("#city").val(data.city);
-                    $("#country").val('BR');
-                    $("#region_id").val(data.uf);
-                }
-                $('#checkout-loader').remove();
-            }).error(function(){});
-        });
-    });
 </script>

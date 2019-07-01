@@ -2,8 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <!-- TODO: Complete module SystemCode_Base-->
-        <!--add id="SystemCode_BrazilCustomerAttributes::title" title="Brazil Customer Attributes" translate="title" module="SystemCode_BrazilCustomerAttributes" sortOrder="100" parent="SystemCode_Base::systemcode" dependsOnModule="SystemCode_BrazilCustomerAttributes" resource="Magento_Backend::content"/>
-        <add id="SystemCode_BrazilCustomerAttributes::configuration" title="Configuration" translate="title" module="SystemCode_BrazilCustomerAttributes" sortOrder="50" parent="SystemCode_BrazilCustomerAttributes::title" action="adminhtml/system_config/edit/section/brazilcustomerattributes" dependsOnModule="SystemCode_BrazilCustomerAttributes" resource="Magento_Backend::content"/-->
+        <add id="SystemCode_BrazilCustomerAttributes::title" title="Brazil Customer Attributes" translate="title" module="SystemCode_BrazilCustomerAttributes" sortOrder="200" parent="SystemCode_Base::systemcode" dependsOnModule="SystemCode_BrazilCustomerAttributes" resource="SystemCode_BrazilCustomerAttributes::brazilcustomerattributes"/>
+        <add id="SystemCode_BrazilCustomerAttributes::configuration" title="Configuration" translate="title" module="SystemCode_BrazilCustomerAttributes" sortOrder="100" parent="SystemCode_BrazilCustomerAttributes::title" action="adminhtml/system_config/edit/section/BrazilCustomerAttributes" dependsOnModule="SystemCode_BrazilCustomerAttributes" resource="SystemCode_BrazilCustomerAttributes::configuration"/>
     </menu>
 </config>

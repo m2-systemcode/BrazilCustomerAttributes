@@ -2,6 +2,7 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Block\Magento\Customer\Widget;
 
+use PHPUnit\Runner\Exception;
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
 use Magento\Customer\Api\CustomerMetadataInterface;
 
@@ -18,7 +19,7 @@ use Magento\Customer\Api\CustomerMetadataInterface;
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Streetprefix extends \Magento\Customer\Block\Address\Edit
+class StreetprefixRegister extends \Magento\Directory\Block\Data
 {
 
     protected $helper;
@@ -26,19 +27,15 @@ class Streetprefix extends \Magento\Customer\Block\Address\Edit
     protected $streetprefix;
 
     /**
-     * Create an instance of the Gender widget
+     * Streetprefix constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Directory\Helper\Data $directoryHelper
      * @param \Magento\Framework\Json\EncoderInterface $jsonEncoder
      * @param \Magento\Framework\App\Cache\Type\Config $configCacheType
      * @param \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regionCollectionFactory
      * @param \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countryCollectionFactory
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Customer\Api\AddressRepositoryInterface $addressRepository
-     * @param \Magento\Customer\Api\Data\AddressInterfaceFactory $addressDataFactory
-     * @param \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer
-     * @param \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
      * @param Helper $helper
+     * @param \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix
      * @param array $data
      */
     public function __construct(
@@ -48,32 +45,14 @@ class Streetprefix extends \Magento\Customer\Block\Address\Edit
         \Magento\Framework\App\Cache\Type\Config $configCacheType,
         \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regionCollectionFactory,
         \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countryCollectionFactory,
-        \Magento\Customer\Model\Session $customerSession,
-        \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
-        \Magento\Customer\Api\Data\AddressInterfaceFactory $addressDataFactory,
-        \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
-        \Magento\Framework\Api\DataObjectHelper $dataObjectHelper,
         Helper $helper,
         \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix,
-        array $data = []
-    ) {
+        array $data = [])
+    {
         $this->helper = $helper;
         $this->streetprefix = $streetprefix;
 
-        parent::__construct(
-            $context,
-            $directoryHelper,
-            $jsonEncoder,
-            $configCacheType,
-            $regionCollectionFactory,
-            $countryCollectionFactory,
-            $customerSession,
-            $addressRepository,
-            $addressDataFactory,
-            $currentCustomer,
-            $dataObjectHelper,
-            $data
-        );
+        parent::__construct($context, $directoryHelper, $jsonEncoder, $configCacheType, $regionCollectionFactory, $countryCollectionFactory, $data);
     }
 
     /**
@@ -112,9 +91,6 @@ class Streetprefix extends \Magento\Customer\Block\Address\Edit
      */
     public function getCurrentStreetPrefix()
     {
-        if(null != ($current = $this->getAddress()->getCustomAttribute('street_prefix'))){
-            return $current->getValue();
-        }
         return;
     }
 

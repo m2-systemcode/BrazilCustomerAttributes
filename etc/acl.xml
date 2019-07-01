@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- File: app/code/Pulsestorm/AclExample/etc/acl.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="SystemCode_Base::systemcode">
+                    <resource id="SystemCode_BrazilCustomerAttributes::brazilcustomerattributes" title="Brazil Customer Attributes" sortOrder="12">
+                        <resource id="SystemCode_BrazilCustomerAttributes::configuration" title="Configuration" sortOrder="100"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

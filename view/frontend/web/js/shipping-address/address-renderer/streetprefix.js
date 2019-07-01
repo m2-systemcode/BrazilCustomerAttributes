@@ -2,11 +2,8 @@ define([
     'underscore',
     'ko',
     'uiRegistry',
-    'Magento_Ui/js/form/element/abstract',
-    'jquery',
-    'inputMask',
-    'mage/url',
-], function (_, ko, registry, Abstract, jquery, mask, url) {
+    'Magento_Ui/js/form/element/abstract'
+], function (_, ko, registry, Abstract) {
     'use strict';
 
     return Abstract.extend({
@@ -17,10 +14,6 @@ define([
         initialize: function () {
             this._super();
             return this;
-        },
-
-        onUpdate: function () {
-
         }
     });
 });

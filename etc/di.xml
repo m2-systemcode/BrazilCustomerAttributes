@@ -9,5 +9,8 @@
     <type name="Magento\Quote\Model\ShippingAddressManagement">
         <plugin disabled="false" name="copy-shipping" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Quote\ShippingAddressManagement"/>
     </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin disabled="false" name="assign-billing" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Checkout\PaymentInformationManagement"/>
+    </type>
     <preference for="Magento\Customer\Model\ResourceModel\AddressRepository" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Customer\ResourceModel\AddressRepository" />
 </config>
