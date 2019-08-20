@@ -71,6 +71,7 @@ class Persontype extends \Magento\Customer\Block\Widget\AbstractWidget
         $this->_isScopePrivate = true;
 
         $this->showCpf = (($this->getPersonType()=="cpf" //o tipo da pessoa é cpf
+                || $this->getPersonType()==false //a pessoa ainda não tem um tipo (registro de usuário)
                 || $this->getConfigAdmin("general", "customer_edit") == "yesall") //ou ela pode trocar de grupo
             && ($this->getStatus("show", "cpf", "cpf") //os campos de cpf estão visíveis
                 || $this->getStatus("show", "cpf", "rg")));
@@ -79,7 +80,7 @@ class Persontype extends \Magento\Customer\Block\Widget\AbstractWidget
         $this->showCnpj = (($this->getPersonType() //o tipo da pessoa é cnpj
                 || $this->getPersonType()==false //a pessoa ainda não tem um tipo (registro de usuário)
                 || $this->getConfigAdmin("general", "customer_edit") == "yesall") //ou ela pode trocar de grupo
-            && ($this->getStatus("show", "cnpj", "cnpj") //os campos de cpf estão visíveis
+            && ($this->getStatus("show", "cnpj", "cnpj") //os campos de cnpj estão visíveis
                 || $this->getStatus("show", "cnpj", "ie")
                 || $this->getStatus("show", "cnpj", "socialname")
                 || $this->getStatus("show", "cnpj", "tradename")
