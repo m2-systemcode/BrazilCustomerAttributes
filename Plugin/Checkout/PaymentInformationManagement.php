@@ -1,5 +1,11 @@
 <?php
-namespace SystemCode\BrazilCustomerAttributes\Model\Magento\Checkout;
+
+namespace SystemCode\BrazilCustomerAttributes\Plugin\Checkout;
+
+use Magento\Quote\Api\BillingAddressManagementInterface;
+use Magento\Quote\Api\Data\PaymentInterface;
+use Magento\Quote\Api\Data\AddressInterface;
+use Magento\Checkout\Model\PaymentInformationManagement as CorePaymentInformationManagement;
 
 /**
  *
@@ -16,7 +22,7 @@ namespace SystemCode\BrazilCustomerAttributes\Model\Magento\Checkout;
 
 class PaymentInformationManagement {
     /**
-     * @var \Magento\Quote\Api\BillingAddressManagementInterface
+     * @var BillingAddressManagementInterface
      * @deprecated 100.2.0 This call was substituted to eliminate extra quote::save call
      *
      * TODO: Shipping method still use similar method to assign, but on billing address this method is deprecated
@@ -24,11 +30,11 @@ class PaymentInformationManagement {
     protected $billingAddressManagement;
 
     /**
-     * @param \Magento\Quote\Api\BillingAddressManagementInterface $billingAddressManagement
+     * @param BillingAddressManagementInterface $billingAddressManagement
      * @codeCoverageIgnore
      */
     public function __construct(
-        \Magento\Quote\Api\BillingAddressManagementInterface $billingAddressManagement
+        BillingAddressManagementInterface $billingAddressManagement
     ) {
         $this->billingAddressManagement = $billingAddressManagement;
     }
@@ -37,10 +43,10 @@ class PaymentInformationManagement {
      * {@inheritDoc}
      */
     public function beforeSavePaymentInformationAndPlaceOrder(
-        \Magento\Checkout\Model\PaymentInformationManagement $subject,
+        CorePaymentInformationManagement $subject,
         $cartId,
-        \Magento\Quote\Api\Data\PaymentInterface $paymentMethod,
-        \Magento\Quote\Api\Data\AddressInterface $billingAddress = null
+        PaymentInterface $paymentMethod,
+        AddressInterface $billingAddress = null
     ) {
         if($billingAddress){
             $this->billingAddressManagement->assign($cartId, $billingAddress);

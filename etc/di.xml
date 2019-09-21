@@ -4,13 +4,13 @@
         <plugin name="rewrite-street" type="SystemCode\BrazilCustomerAttributes\Model\Checkout\LayoutProcessorPlugin" sortOrder="10"/>
     </type>
     <type name="Magento\Quote\Model\BillingAddressManagement">
-        <plugin disabled="false" name="copy-billing" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Quote\BillingAddressManagement"/>
+        <plugin disabled="false" name="copy-billing" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Plugin\Quote\BillingAddressManagement"/>
     </type>
     <type name="Magento\Quote\Model\ShippingAddressManagement">
-        <plugin disabled="false" name="copy-shipping" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Quote\ShippingAddressManagement"/>
+        <plugin disabled="false" name="copy-shipping" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Plugin\Quote\ShippingAddressManagement"/>
     </type>
     <type name="Magento\Checkout\Model\PaymentInformationManagement">
-        <plugin disabled="false" name="assign-billing" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Checkout\PaymentInformationManagement"/>
+        <plugin disabled="false" name="assign-billing" sortOrder="10" type="SystemCode\BrazilCustomerAttributes\Plugin\Checkout\PaymentInformationManagement"/>
     </type>
     <preference for="Magento\Customer\Model\ResourceModel\AddressRepository" type="SystemCode\BrazilCustomerAttributes\Model\Magento\Customer\ResourceModel\AddressRepository" />
 </config>
