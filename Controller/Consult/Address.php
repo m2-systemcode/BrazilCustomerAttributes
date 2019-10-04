@@ -5,7 +5,7 @@ namespace SystemCode\BrazilCustomerAttributes\Controller\Consult;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
-use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 
 /**
@@ -21,7 +21,7 @@ use Magento\Framework\Controller\Result\JsonFactory;
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Address extends Action implements HttpPostActionInterface
+class Address extends Action implements HttpGetActionInterface
 {
     /**
      * @var Helper
