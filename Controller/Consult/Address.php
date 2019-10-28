@@ -51,8 +51,8 @@ class Address extends \Magento\Framework\App\Action\Action
     {         
         
         if($zipcode = $this->getRequest()->getParam('zipcode')){
-
-            $data = $this->getAddressFromCorreios->getAddress($zipcode);
+                        
+            $data = $this->getAddressFromViaCep->getAddress($zipcode);
 
             if ($data === false) {
 
