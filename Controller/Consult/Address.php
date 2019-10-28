@@ -3,8 +3,8 @@
 namespace SystemCode\BrazilCustomerAttributes\Controller\Consult;
 
 use Magento\Framework\App\Action\Context;
-use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
-
+use SystemCode\BrazilCustomerAttributes\Model\Address\ViaCep\GetAddress as GetAddressFromViaCep;
+use SystemCode\BrazilCustomerAttributes\Model\Address\Correios\GetAddress as GetAddressFromCorreios;
 /**
  *
  * Controller to consult address by zipcode
@@ -24,50 +24,46 @@ class Address extends \Magento\Framework\App\Action\Action
 
     protected $_resultPageFactory;
 
+    protected $getAddressFromCorreios;
+
+    protected $getAddressFromViaCep;
+
     /**
      * Address constructor.
      * @param Helper $helper
      * @param Context $context
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
      */
-    public function __construct(
-        Helper $helper,
+    public function __construct(        
         Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory)
-    {
-        $this->helper = $helper;
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        GetAddressFromCorreios $getAddressFromCorreios,
+        GetAddressFromViaCep $getAddressFromViaCep
+        )
+    {        
         $this->_resultJsonFactory = $resultJsonFactory;
+        $this->getAddressFromCorreios = $getAddressFromCorreios;
+        $this->getAddressFromViaCep = $getAddressFromViaCep;
         parent::__construct($context);
     }
 
     public function execute()
-    {
-        $data = ["error" => true];
-
+    {         
+        
         if($zipcode = $this->getRequest()->getParam('zipcode')){
-            try {
-                $client = new \SoapClient('https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl',
-                    ['exceptions' => true]);
-                $result = $client->consultaCEP(['cep' => $zipcode]);
-            } catch (\SoapFault $e) {
 
-            }
+            $data = $this->getAddressFromCorreios->getAddress($zipcode);
 
-            if(isset($result)){
-                $complement = trim(implode(' ', array($result->return->complemento??'', $result->return->complemento2??'')));
-                $data = [
-                    'error' => false,
-                    'zipcode' => $zipcode,
-                    'street' => $result->return->end,
-                    'neighborhood' => $result->return->bairro,
-                    'complement' => $complement,
-                    'city' => $result->return->cidade,
-                    'uf' => $this->helper->getRegionId($result->return->uf)
-                ];
-            }
+            if ($data === false) {
+
+                $data = $this->getAddressFromCorreios->getAddress($zipcode);
+                
+            }            
+
         }
 
         $return = $this->_resultJsonFactory->create();
         return $return->setData(str_replace("\\","",$data));
     }
+
 }
