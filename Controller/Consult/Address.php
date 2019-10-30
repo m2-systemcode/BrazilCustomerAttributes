@@ -2,8 +2,11 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Controller\Consult;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\Result\JsonFactory;
 
 /**
  *
@@ -18,11 +21,17 @@ use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Address extends \Magento\Framework\App\Action\Action
+class Address extends Action implements HttpGetActionInterface
 {
+    /**
+     * @var Helper
+     */
     protected $helper;
 
-    protected $_resultPageFactory;
+    /**
+     * @var JsonFactory
+     */
+    protected $_resultJsonFactory;
 
     /**
      * Address constructor.
@@ -33,8 +42,8 @@ class Address extends \Magento\Framework\App\Action\Action
     public function __construct(
         Helper $helper,
         Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory)
-    {
+        JsonFactory $resultJsonFactory
+    ) {
         $this->helper = $helper;
         $this->_resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
