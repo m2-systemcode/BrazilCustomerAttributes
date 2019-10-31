@@ -1,31 +1,42 @@
 <?php
-namespace SystemCode\BrazilCustomerAttributes\Model\Checkout;
+
+namespace SystemCode\BrazilCustomerAttributes\Plugin\Checkout;
 
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
 
 /**
- *
  * Model to add label each address line
- *
  *
  * NOTICE OF LICENSE
  *
- * @category   SystemCode
- * @package    Systemcode_BrazilCustomerAttributes
- * @author     Eduardo Diogo Dias <contato@systemcode.com.br>
- * @copyright  System Code LTDA-ME
- * @license    http://opensource.org/licenses/osl-3.0.php
+ * @category  SystemCode
+ * @package   Systemcode_BrazilCustomerAttributes
+ * @author    Eduardo Diogo Dias <contato@systemcode.com.br>
+ * @copyright System Code LTDA-ME
+ * @license   http://opensource.org/licenses/osl-3.0.php
  */
-class LayoutProcessorPlugin
+class LayoutProcessor
 {
 
+    /**
+     * @var Helper
+     */
     protected $helper;
+
+    /**
+     * @var \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix
+     */
     protected $streetprefix;
+
+    /**
+     * @var Array
+     */
     protected $streetprefixoptions;
 
     /**
      * LayoutProcessorPlugin constructor.
-     * @param Helper $helper
+     *
+     * @param Helper                                                                $helper
      * @param \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix
      */
     public function __construct(
@@ -38,7 +49,7 @@ class LayoutProcessorPlugin
 
     /**
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
-     * @param array $jsLayout
+     * @param array                                            $jsLayout
      * @return array
      */
 
@@ -54,7 +65,8 @@ class LayoutProcessorPlugin
         return $jsLayout;
     }
 
-    public function setStreetPrefixOptions(){
+    public function setStreetPrefixOptions()
+    {
         $this->streetprefixoptions = [];
 
         if($this->helper->getConfig("brazilcustomerattributes/general/prefix_enabled")) {
@@ -67,7 +79,8 @@ class LayoutProcessorPlugin
         }
     }
 
-    public function getShippingFormFields($jsLayout, $numStreetLines){
+    public function getShippingFormFields($jsLayout, $numStreetLines)
+    {
         // Street Label
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['label'] = '';
@@ -82,7 +95,7 @@ class LayoutProcessorPlugin
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][0]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
 
         // Street Line 1
-        if($this->helper->getConfig("brazilcustomerattributes/general/line_number") && $numStreetLines >= 2){
+        if($this->helper->getConfig("brazilcustomerattributes/general/line_number") && $numStreetLines >= 2) {
             $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
             ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][1]['label'] = __('Number');
             $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
@@ -150,10 +163,10 @@ class LayoutProcessorPlugin
         return $jsLayout;
     }
 
-    public function getBillingFormFields($jsLayout, $numStreetLines){
-        if(isset($jsLayout['components']['checkout']['children']['steps']['children']
-            ['billing-step']['children']['payment']['children']
-            ['payments-list'])) {
+    public function getBillingFormFields($jsLayout, $numStreetLines)
+    {
+        if(isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list'])
+        ) {
 
             $paymentForms = $jsLayout['components']['checkout']['children']['steps']['children']
             ['billing-step']['children']['payment']['children']
@@ -163,8 +176,8 @@ class LayoutProcessorPlugin
 
                 $paymentMethodCode = str_replace('-form', '', $paymentMethodForm);
 
-                if (!isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form'])) {
+                if (!isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form'])
+                ) {
                     continue;
                 }
 

@@ -2,9 +2,13 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Controller\Consult;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use SystemCode\BrazilCustomerAttributes\Model\Address\ViaCep\GetAddress as GetAddressFromViaCep;
 use SystemCode\BrazilCustomerAttributes\Model\Address\Correios\GetAddress as GetAddressFromCorreios;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\Result\JsonFactory;
+
 /**
  *
  * Controller to consult address by zipcode
@@ -18,8 +22,9 @@ use SystemCode\BrazilCustomerAttributes\Model\Address\Correios\GetAddress as Get
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Address extends \Magento\Framework\App\Action\Action
+class Address extends Action implements HttpGetActionInterface
 {
+  
     protected $_resultPageFactory;
 
     protected $getAddressFromCorreios;
@@ -35,9 +40,9 @@ class Address extends \Magento\Framework\App\Action\Action
      */
     public function __construct(        
         Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         GetAddressFromCorreios $getAddressFromCorreios,
         GetAddressFromViaCep $getAddressFromViaCep
+        JsonFactory $resultJsonFactory
         )
     {        
         $this->_resultJsonFactory = $resultJsonFactory;
