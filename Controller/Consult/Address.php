@@ -41,7 +41,7 @@ class Address extends Action implements HttpGetActionInterface
     public function __construct(        
         Context $context,
         GetAddressFromCorreios $getAddressFromCorreios,
-        GetAddressFromViaCep $getAddressFromViaCep
+        GetAddressFromViaCep $getAddressFromViaCep,
         JsonFactory $resultJsonFactory
         )
     {        
