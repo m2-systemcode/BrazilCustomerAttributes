@@ -20,8 +20,6 @@ use SystemCode\BrazilCustomerAttributes\Model\Address\Correios\GetAddress as Get
  */
 class Address extends \Magento\Framework\App\Action\Action
 {
-    protected $helper;
-
     protected $_resultPageFactory;
 
     protected $getAddressFromCorreios;
@@ -30,9 +28,10 @@ class Address extends \Magento\Framework\App\Action\Action
 
     /**
      * Address constructor.
-     * @param Helper $helper
      * @param Context $context
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+     * @param GetAddressFromCorreios $getAddressFromCorreios
+     * @param GetAddressFromViaCep $getAddressFromViaCep
      */
     public function __construct(        
         Context $context,
