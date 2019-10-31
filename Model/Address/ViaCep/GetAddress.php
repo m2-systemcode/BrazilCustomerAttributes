@@ -2,9 +2,9 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Model\Address\ViaCep;
 
-use GuzzleHttp\Client;
 use SystemCode\BrazilCustomerAttributes\Helper\Data;
 use SystemCode\BrazilCustomerAttributes\Model\Address\GetAddressInterface;
+use Magento\Framework\HTTP\Client\CurlFactory;
 
 class GetAddress implements GetAddressInterface{
 
@@ -12,27 +12,28 @@ class GetAddress implements GetAddressInterface{
 
     private $helper;
 
+    private $curlFactory;
+
     public function __construct(
-        Data $helper
+        Data $helper,
+        CurlFactory $curlFactory
+        
     )
     {
         $this->helper = $helper;
+        $this->curlFactory = $curlFactory;
     }
 
 
     public function getAddress(string $postcode): array
     {
         try {
+           
+            $curlClient = $this->curlFactory->create();
 
-            $client = new Client(
-                [
-                    'base_uri' => $this->baseUri
-                ]
-            );
+            $curlClient->get($this->baseUri . $postcode . '/json');
     
-            $response =  $client->get($postcode . '/json');
-    
-            $address = json_decode($response->getBody()->getContents(), true);
+            $address = json_decode($curlClient->getBody(), true);
     
             $data = [
                 'error' => false,
