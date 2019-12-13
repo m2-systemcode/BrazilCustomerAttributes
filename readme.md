@@ -54,6 +54,9 @@ OSL-3.0
 ### Donators
 * [Ricardo Martins](https://www.magenteiro.com/)
 
+### Contributors
+* [Max Souza](https://github.com/MaxSouza)
+
 ### Authors
 * [Eduardo Diogo Dias](https://github.com/eduardoddias)
 
@@ -103,6 +106,9 @@ OSL-3.0
 
 ### Doadores
 * [Ricardo Martins](https://www.magenteiro.com/)
+
+### Contribuidores
+* [Max Souza](https://github.com/MaxSouza)
 
 ### Autores
 * [Eduardo Diogo Dias](https://github.com/eduardoddias)
