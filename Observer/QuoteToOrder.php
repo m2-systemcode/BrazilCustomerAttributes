@@ -2,6 +2,8 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Observer;
 
+use \Magento\Customer\Api\AddressRepositoryInterface;
+
 /**
  *
  * Observer to copy quote fields to order
@@ -18,6 +20,21 @@ namespace SystemCode\BrazilCustomerAttributes\Observer;
 class QuoteToOrder implements \Magento\Framework\Event\ObserverInterface
 {
     /**
+     * @var AddressRepositoryInterface
+     */
+    protected $addressRepository;
+
+    /**
+     * QuoteToOrder constructor.
+     * @param AddressRepositoryInterface $addressRepository
+     */
+    public function __construct(
+        AddressRepositoryInterface $addressRepository
+    ) {
+        $this->addressRepository = $addressRepository;
+    }
+
+    /**
      *
      * @param \Magento\Framework\Event\Observer $observer
      * @return $this
@@ -30,13 +47,34 @@ class QuoteToOrder implements \Magento\Framework\Event\ObserverInterface
         $orderShippingAdress = $observer->getOrder()->getShippingAddress();
         $orderShippingAdress->setStreetPrefix($street_prefix)->save();
 
+        // copy shipping address street prefix to customer
+        if($addressId = $orderShippingAdress->getCustomerAddressId()){
+            $this->updateCustomerAddress($addressId, $street_prefix);
+        }
+
         // copy billing address street prefix
         $quoteBillingAddress = $observer->getQuote()->getBillingAddress();
         $street_prefix = $quoteBillingAddress->getStreetPrefix();
         $orderBillingAddress = $observer->getOrder()->getBillingAddress();
         $orderBillingAddress->setStreetPrefix($street_prefix)->save();
 
+        // copy billing address street prefix to customer
+        if($addressId = $orderBillingAddress->getCustomerAddressId()){
+            $this->updateCustomerAddress($addressId, $street_prefix);
+        }
+
         return $this;
+    }
+
+    /**
+     * Update street prefix on customer address
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return void
+     */
+    protected function updateCustomerAddress($addressId, $streetPrefix) {
+        $address = $this->addressRepository->getById($addressId);
+        $address->setCustomAttribute('street_prefix', $streetPrefix);
+        $this->addressRepository->save($address);
     }
 
 }
