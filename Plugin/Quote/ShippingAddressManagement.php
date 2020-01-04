@@ -48,8 +48,8 @@ class ShippingAddressManagement
         AddressInterface $address
     ) {
         $extAttributes = $address->getExtensionAttributes();
-        if (!empty($extAttributes)) {
 
+        if (!empty($extAttributes->getStreetPrefix())) {
             try {
                 $address->setStreetPrefix($extAttributes->getStreetPrefix());
             } catch (\Exception $e) {

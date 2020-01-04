@@ -53,14 +53,13 @@ class BillingAddressManagement
         $useForShipping = false
     ) {
         $extAttributes = $address->getExtensionAttributes();
-        if (!empty($extAttributes)) {
 
+        if (!empty($extAttributes->getStreetPrefix())) {
             try {
                 $address->setStreetPrefix($extAttributes->getStreetPrefix());
             } catch (\Exception $e) {
                 $this->logger->critical($e->getMessage());
             }
-
         }
     }
 }
