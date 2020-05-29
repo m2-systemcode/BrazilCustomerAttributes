@@ -6,8 +6,16 @@ use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 
+/**
+ * Class UpgradeSchema
+ * @package SystemCode\BrazilCustomerAttributes\Setup
+ */
 class UpgradeSchema implements UpgradeSchemaInterface
 {
+    /**
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $installer = $setup;
@@ -21,8 +29,13 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $installer->endSetup();
     }
 
-    private function addStreetPrefix($connection, $setup){
-        if ($connection->tableColumnExists('sales_order_address', 'street_prefix') === false) {
+    /**
+     * @param $connection
+     * @param $setup
+     */
+    private function addStreetPrefix($connection, $setup)
+    {
+        if ($connection->tableColumnExists($setup->getTable('sales_order_address'), 'street_prefix') === false) {
             $connection->addColumn(
                     $setup->getTable('sales_order_address'),
                     'street_prefix',
@@ -36,7 +49,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 );
         }
 
-        if ($connection->tableColumnExists('quote_address', 'street_prefix') === false) {
+        if ($connection->tableColumnExists($setup->getTable('quote_address'), 'street_prefix') === false) {
             $connection->addColumn(
                 $setup->getTable('quote_address'),
                 'street_prefix',
