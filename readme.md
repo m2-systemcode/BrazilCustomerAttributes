@@ -21,7 +21,7 @@ PS: This module doesn't work with checkout as guest.
 #### ✓ Install by Composer (recommended)
 ```
 composer require systemcode/brazilcustomerattributes
-php bin/magento module:enable
+php bin/magento module:enable SystemCode_BrazilCustomerAttributes SystemCode_Base
 php bin/magento setup:upgrade
 ```
 
