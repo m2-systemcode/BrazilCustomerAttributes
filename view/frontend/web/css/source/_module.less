@@ -3,26 +3,31 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-  .checkout-index-index{
-    html, body{
-      background: red !important;
-    }
+  .checkout-index-index {
     .fieldset .field,
     .fieldset .fields .field {
       margin: 0 0 20px;
     }
-    .fieldset .field.street{
+
+    .fieldset .field.street {
       margin: 0;
-      &>legend{
+
+      & > legend {
         margin: 0;
       }
     }
-    .fieldset .field .label{
+
+    .fieldset .field .label {
       display: inline !important;
       position: initial !important;
       overflow: initial !important;
       font-weight: 600;
     }
+
+    #tooltip-label {
+      display: none !important;
+    }
+
     .fieldset .field.required .label:after,
     .fieldset .fields .field.required .label:after,
     .fieldset .field._required .label:after,
