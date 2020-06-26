@@ -93,3 +93,5 @@ Options,Options
 "Add Option","Add Option"
 "Street Prefix","Street Prefix"
 "Please select a street prefix.","Please select a street prefix."
+"Compatibility","Compatibility"
+"Enable compatibility for FullCheckout","Enable compatibility for FullCheckout"

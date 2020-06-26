@@ -107,6 +107,15 @@
                     <backend_model>SystemCode\BrazilCustomerAttributes\Model\Config\Backend\Show\Customer</backend_model>
                 </field>
             </group>
+
+            <group id="compatibility" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Compatibility</label>
+                <field id="full_checkout" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable compatibility for FullCheckout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            
         </section>
     </system>
 </config>

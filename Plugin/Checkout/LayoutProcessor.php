@@ -138,28 +138,28 @@ class LayoutProcessor
                 'id' => 'street-prefix'
             ];
         }
+        if(!$this->helper->getConfig("brazilcustomerattributes/compatibility/full_checkout")) {
+            // Company
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+            ['children']['shippingAddress']['children']['shipping-address-fieldset']
+            ['children']['company']['sortOrder'] = 118;
 
-        // Company
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['company']['sortOrder'] = 118;
+            // Zipcode
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+            ['children']['shippingAddress']['children']['shipping-address-fieldset']
+            ['children']['postcode']['sortOrder'] = 40;
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+            ['children']['shippingAddress']['children']['shipping-address-fieldset']
+            ['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+            ['children']['shippingAddress']['children']['shipping-address-fieldset']
+            ['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
 
-        // Zipcode
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['sortOrder'] = 40;
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
-
-        // Telephone
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
-
+            // Telephone
+            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+            ['children']['shippingAddress']['children']['shipping-address-fieldset']
+            ['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+        }
         return $jsLayout;
     }
 
@@ -244,27 +244,28 @@ class LayoutProcessor
                         'id' => 'street-prefix'
                     ];
                 }
+                if(!$this->helper->getConfig("brazilcustomerattributes/compatibility/full_checkout")) {
+                    // Company
+                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                    ['form-fields']['children']['company']['sortOrder'] = 118;
 
-                // Company
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['company']['sortOrder'] = 118;
+                    // Zipcode
+                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                    ['form-fields']['children']['postcode']['sortOrder'] = 40;
+                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                    ['form-fields']['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
+                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                    ['form-fields']['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
 
-                // Zipcode
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['sortOrder'] = 40;
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
-
-                // Telephone
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+                    // Telephone
+                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                    ['form-fields']['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+                }
             }
         }
 

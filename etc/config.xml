@@ -26,6 +26,9 @@
                 <request_social_name>1</request_social_name>
                 <allow_social_name_edit>0</allow_social_name_edit>
             </cnpj>
+            <compatibility>
+                <full_checkout>0</full_checkout>
+            </compatibility>
         </brazilcustomerattributes>
     </default>
 </config>
