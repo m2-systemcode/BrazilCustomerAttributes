@@ -6,6 +6,7 @@ define([
     'jquery',
     'inputMask',
     'mage/url',
+    'loader',
 ], function (_, ko, registry, Abstract, jquery, mask, url) {
     'use strict';
 
@@ -63,8 +64,8 @@ define([
             //    return;
             //}
 
-            if(validate.valid == true && this.value() && this.value().length == 9){
-                jquery('#checkout').append(checkoutLoader);
+            if(validate.valid == true && this.value() && this.value().length == 9) {
+                jquery('body').loader('show');
 
                 var element = this;
 
@@ -100,12 +101,10 @@ define([
                             registry.get(element.parentName + '.' + 'country_id').value('BR');
                         }
                     }
-                    jquery('#checkout-loader').remove();
+                    jquery('body').loader('hide');
                 }).error(function(){
-                    jquery('#checkout-loader').remove();
+                    jquery('body').loader('hide');
                 });
-            }else{
-                jquery('#checkout-loader').remove();
             }
 
         }

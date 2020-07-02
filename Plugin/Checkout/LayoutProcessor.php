@@ -160,6 +160,11 @@ class LayoutProcessor
         ['children']['shippingAddress']['children']['shipping-address-fieldset']
         ['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
 
+        // Fax
+        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
+        ['children']['shippingAddress']['children']['shipping-address-fieldset']
+        ['children']['fax']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
         return $jsLayout;
     }
 
@@ -265,6 +270,11 @@ class LayoutProcessor
                 $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
                 ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
                 ['form-fields']['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+                // Fax
+                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
+                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
+                ['form-fields']['children']['fax']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
             }
         }
 

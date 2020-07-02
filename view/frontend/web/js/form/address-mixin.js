@@ -1,12 +1,19 @@
 require([
     'jquery',
     'inputMask',
-    'mage/url'
+    'mage/url',
+    'loader',
 ], function ($, mask, url) {
     $("#postcode").mask('00000-000', {clearIfNotMatch: true});
     $('#postcode').change(function(){
-        zipcode = $(this).val().replace('-', '');
+        var zipcode = $(this).val().replace('-', '');
         var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
+
+        if (zipcode.length !== 8) {
+            return;
+        }
+
+        $('body').loader('show');
 
         $.ajax({
             url: ajaxurl,
@@ -24,8 +31,10 @@ require([
                 $("#country").val('BR');
                 $("#region_id").val(data.uf);
             }
-            $('#checkout-loader').remove();
-        }).error(function(){});
+            $('body').loader('hide');
+        }).error(function () {
+            $('body').loader('show');
+        });
     });
 
     var SPMaskBehavior = function (val) {
@@ -39,4 +48,5 @@ require([
         };
 
     $('#telephone').mask(SPMaskBehavior, spOptions);
+    $('#fax').mask(SPMaskBehavior, spOptions);
 });
