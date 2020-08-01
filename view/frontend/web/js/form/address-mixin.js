@@ -5,8 +5,8 @@ require([
 ], function ($, mask, url) {
     $("#postcode").mask('00000-000', {clearIfNotMatch: true});
     $('#postcode').change(function(){
-        zipcode = $(this).val().replace('-', '');
-        var ajaxurl = url.build("brcustomer/consult/address/zipcode/"+zipcode);
+        var zipcode = $(this).val().replace('-', '');
+        var ajaxurl = url.build('/rest/V1/magedev-brazil-zipcode/search/' + zipcode);
 
         $.ajax({
             url: ajaxurl,
@@ -19,10 +19,10 @@ require([
             }else{
                 $("#street_1").val(data.street);
                 $("#street_3").val(data.neighborhood);
-                $("#street_4").val(data.complement);
+                $("#street_4").val(data.additional_info);
                 $("#city").val(data.city);
                 $("#country").val('BR');
-                $("#region_id").val(data.uf);
+                $("#region_id").val(data.region_id);
             }
             $('#checkout-loader').remove();
         }).error(function(){});
