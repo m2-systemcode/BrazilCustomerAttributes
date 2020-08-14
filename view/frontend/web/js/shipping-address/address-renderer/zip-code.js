@@ -82,19 +82,19 @@ define([
                         // TODO
                     }else{
                         if(registry.get(element.parentName + '.' + 'street.0')){
-                            registry.get(element.parentName + '.' + 'street.0').value(data.street);
+                            registry.get(element.parentName + '.' + 'street.0').value(data.street || '');
                         }
                         if(registry.get(element.parentName + '.' + 'street.2')){
-                            registry.get(element.parentName + '.' + 'street.2').value(data.neighborhood);
+                            registry.get(element.parentName + '.' + 'street.2').value(data.neighborhood || '');
                         }
                         if(registry.get(element.parentName + '.' + 'street.3')){
-                            registry.get(element.parentName + '.' + 'street.3').value(data.additional_info);
+                            registry.get(element.parentName + '.' + 'street.3').value(data.additional_info || '');
                         }
                         if(registry.get(element.parentName + '.' + 'city')){
-                            registry.get(element.parentName + '.' + 'city').value(data.city);
+                            registry.get(element.parentName + '.' + 'city').value(data.city || '');
                         }
                         if(registry.get(element.parentName + '.' + 'region_id')){
-                            registry.get(element.parentName + '.' + 'region_id').value(data.region_id);
+                            registry.get(element.parentName + '.' + 'region_id').value(data.region_id || '');
                         }
                         if(registry.get(element.parentName + '.' + 'country_id')){
                             registry.get(element.parentName + '.' + 'country_id').value('BR');
