@@ -1,12 +1,14 @@
 require([
     'jquery',
     'inputMask',
-    'mage/url'
+    'mage/url',
+    'loader'
 ], function ($, mask, url) {
     $("#postcode").mask('00000-000', {clearIfNotMatch: true});
-    $('#postcode').change(function(){
+    $('#postcode').on('change', function(){
         var zipcode = $(this).val().replace('-', '');
-        var ajaxurl = url.build('/rest/V1/magedev-brazil-zipcode/search/' + zipcode);
+        var ajaxurl = url.build('rest/V1/magedev-brazil-zipcode/search/' + zipcode);
+        $('body').loader('show');
 
         $.ajax({
             url: ajaxurl,
@@ -17,15 +19,16 @@ require([
             if(data.error){
                 // TODO
             }else{
-                $("#street_1").val(data.street);
-                $("#street_3").val(data.neighborhood);
-                $("#street_4").val(data.additional_info);
-                $("#city").val(data.city);
+                $("#street_1").val(data.street??'');
+                $("#street_3").val(data.neighborhood??'');
+                $("#street_4").val(data.additional_info??'');
+                $("#city").val(data.city??'');
                 $("#country").val('BR');
-                $("#region_id").val(data.region_id);
+                $("#region_id").val(data.region_id??'');
             }
-            $('#checkout-loader').remove();
         }).error(function(){});
+
+        $('body').loader('hide');
     });
 
     var SPMaskBehavior = function (val) {
@@ -39,4 +42,5 @@ require([
         };
 
     $('#telephone').mask(SPMaskBehavior, spOptions);
+    $('#fax').mask(SPMaskBehavior, spOptions);
 });
