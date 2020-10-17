@@ -6,10 +6,9 @@ define([
     'jquery',
     'inputMask',
     'mage/url',
+    'loader'
 ], function (_, ko, registry, Abstract, jquery, mask, url) {
     'use strict';
-
-    var checkoutLoader = jquery('#checkout-loader');
 
     return Abstract.extend({
         defaults: {
@@ -58,13 +57,9 @@ define([
         onUpdate: function () {
             this.bubble('update', this.hasChanged());
             var validate = this.validate();
-            //if(this.firstLoad){
-            //    this.firstLoad = false;
-            //    return;
-            //}
 
             if(validate.valid == true && this.value() && this.value().length == 9){
-                jquery('#checkout').append(checkoutLoader);
+                jquery('body').loader('show');
 
                 var element = this;
 
@@ -82,30 +77,30 @@ define([
                         // TODO
                     }else{
                         if(registry.get(element.parentName + '.' + 'street.0')){
-                            registry.get(element.parentName + '.' + 'street.0').value(data.street);
+                            registry.get(element.parentName + '.' + 'street.0').value(data.street ?? '');
                         }
                         if(registry.get(element.parentName + '.' + 'street.2')){
-                            registry.get(element.parentName + '.' + 'street.2').value(data.neighborhood);
+                            registry.get(element.parentName + '.' + 'street.2').value(data.neighborhood ?? '');
                         }
                         if(registry.get(element.parentName + '.' + 'street.3')){
-                            registry.get(element.parentName + '.' + 'street.3').value(data.additional_info);
+                            registry.get(element.parentName + '.' + 'street.3').value(data.additional_info ?? '');
                         }
                         if(registry.get(element.parentName + '.' + 'city')){
-                            registry.get(element.parentName + '.' + 'city').value(data.city);
+                            registry.get(element.parentName + '.' + 'city').value(data.city ?? '');
                         }
                         if(registry.get(element.parentName + '.' + 'region_id')){
-                            registry.get(element.parentName + '.' + 'region_id').value(data.region_id);
+                            registry.get(element.parentName + '.' + 'region_id').value(data.region_id ?? '');
                         }
                         if(registry.get(element.parentName + '.' + 'country_id')){
                             registry.get(element.parentName + '.' + 'country_id').value('BR');
                         }
                     }
-                    jquery('#checkout-loader').remove();
+                    jquery('body').loader('hide');
                 }).error(function(){
-                    jquery('#checkout-loader').remove();
+                    jquery('body').loader('hide');
                 });
             }else{
-                jquery('#checkout-loader').remove();
+                jquery('body').loader('hide');
             }
 
         }

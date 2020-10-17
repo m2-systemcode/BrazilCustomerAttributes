@@ -81,45 +81,53 @@ class LayoutProcessor
 
     public function getShippingFormFields($jsLayout, $numStreetLines)
     {
+        $shippingAddressFieldsetChild = $jsLayout['components']['checkout']['children']['steps']['children']
+            ['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children'];
+
         // Street Label
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-        ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['label'] = '';
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-        ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['required'] = false;
+        $shippingAddressFieldsetChild['street']['label'] = '';
+        $shippingAddressFieldsetChild['street']['required'] = false;
 
         // Street Line 0
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-        ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][0]['label'] = __('Address');
+        $shippingAddressFieldsetChild['street']['children'][0]['label'] = __('Address');
 
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-        ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][0]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
+        $shippingAddressFieldsetChild['street']['children'][0]['validation'] = [
+            'required-entry' => true,
+            'min_text_len‌​gth' => 1,
+            'max_text_length' => 255
+        ];
 
         // Street Line 1
-        if($this->helper->getConfig("brazilcustomerattributes/general/line_number") && $numStreetLines >= 2) {
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][1]['label'] = __('Number');
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][1]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
+        if($this->helper->getConfig("brazilcustomerattributes/general/line_number")
+                && $numStreetLines >= 2) {
+            $shippingAddressFieldsetChild['street']['children'][1]['label'] = __('Number');
+            $shippingAddressFieldsetChild['street']['children'][1]['validation'] = [
+                'required-entry' => true,
+                'min_text_len‌​gth' => 1,
+                'max_text_length' => 255
+            ];
         }
 
         // Street Line 2
-        if($this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood") && $numStreetLines >= 3) {
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][2]['label'] = __('Neighborhood');
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][2]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
+        if($this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood")
+                && $numStreetLines >= 3) {
+            $shippingAddressFieldsetChild['street']['children'][2]['label'] = __('Neighborhood');
+            $shippingAddressFieldsetChild['street']['children'][2]['validation'] = [
+                'required-entry' => true,
+                'min_text_len‌​gth' => 1,
+                'max_text_length' => 255
+            ];
         }
 
         // Street Line 3
-        if($this->helper->getConfig("brazilcustomerattributes/general/line_complement") && $numStreetLines == 4) {
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street']['children'][3]['label'] = __('Complement');
+        if($this->helper->getConfig("brazilcustomerattributes/general/line_complement")
+                && $numStreetLines == 4) {
+            $shippingAddressFieldsetChild['street']['children'][3]['label'] = __('Complement');
         }
 
         // Street Prefix
         if($this->helper->getConfig("brazilcustomerattributes/general/prefix_enabled")) {
-            $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-            ['shippingAddress']['children']['shipping-address-fieldset']['children']['street_prefix'] = [
+            $shippingAddressFieldsetChild['street_prefix'] = [
                 'component' => 'Magento_Ui/js/form/element/select',
                 'config' => [
                     'customScope' => 'shippingAddress.custom_attributes',
@@ -140,34 +148,35 @@ class LayoutProcessor
         }
 
         // Company
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['company']['sortOrder'] = 118;
+        $shippingAddressFieldsetChild['company']['sortOrder'] = 118;
 
         // Zipcode
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['sortOrder'] = 40;
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
+        $shippingAddressFieldsetChild['postcode']['sortOrder'] = 40;
+        $shippingAddressFieldsetChild['postcode']['component'] =
+            'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
+        $shippingAddressFieldsetChild['postcode']['config']['elementTmpl'] =
+            'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
 
         // Telephone
-        $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']
-        ['children']['shippingAddress']['children']['shipping-address-fieldset']
-        ['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+        $shippingAddressFieldsetChild['telephone']['component'] =
+            'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+        // Fax
+        $shippingAddressFieldsetChild['fax']['component'] =
+            'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+        $jsLayout['components']['checkout']['children']['steps']['children']
+            ['shipping-step']['children']['shippingAddress']['children']
+            ['shipping-address-fieldset']['children'] = $shippingAddressFieldsetChild;
 
         return $jsLayout;
     }
 
     public function getBillingFormFields($jsLayout, $numStreetLines)
     {
-        if(isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list'])
+        if(isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
+            ['children']['payment']['children']['payments-list'])
         ) {
-
             $paymentForms = $jsLayout['components']['checkout']['children']['steps']['children']
             ['billing-step']['children']['payment']['children']
             ['payments-list']['children'];
@@ -176,56 +185,54 @@ class LayoutProcessor
 
                 $paymentMethodCode = str_replace('-form', '', $paymentMethodForm);
 
-                if (!isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form'])
+                if (!isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
+                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form'])
                 ) {
                     continue;
                 }
 
+                $paymentFormChildren = $jsLayout['components']['checkout']['children']['steps']['children']
+                    ['billing-step']['children']['payment']['children']['payments-list']['children']
+                    [$paymentMethodCode . '-form']['children']['form-fields']['children'];
+
                 // Street Label
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                ['children']['form-fields']['children']['street']['label'] = '';
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                ['children']['form-fields']['children']['street']['required'] = false;
+                $paymentFormChildren['street']['label'] = '';
+                $paymentFormChildren['street']['required'] = false;
 
                 // Street Line 0
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                ['children']['form-fields']['children']['street']['children'][0]['label'] = __('Address');
+                $paymentFormChildren['street']['children'][0]['label'] = __('Address');
 
                 // Street Line 1
-                if($this->helper->getConfig("brazilcustomerattributes/general/line_number") && $numStreetLines >= 2) {
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                    ['children']['form-fields']['children']['street']['children'][1]['label'] = __('Number');
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                    ['children']['form-fields']['children']['street']['children'][1]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_number")
+                        && $numStreetLines >= 2) {
+                    $paymentFormChildren['street']['children'][1]['label'] = __('Number');
+                    $paymentFormChildren['street']['children'][1]['validation'] = [
+                        'required-entry' => true,
+                        'min_text_len‌​gth' => 1,
+                        'max_text_length' => 255
+                    ];
                 }
 
                 // Street Line 2
-                if($this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood") && $numStreetLines >= 3) {
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                    ['children']['form-fields']['children']['street']['children'][2]['label'] = __('Neighborhood');
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                    ['children']['form-fields']['children']['street']['children'][2]['validation'] = ['required-entry' => true, "min_text_len‌​gth" => 1, "max_text_length" => 255];
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood")
+                        && $numStreetLines >= 3) {
+                    $paymentFormChildren['street']['children'][2]['label'] = __('Neighborhood');
+                    $paymentFormChildren['street']['children'][2]['validation'] = [
+                        'required-entry' => true,
+                        'min_text_len‌​gth' => 1,
+                        'max_text_length' => 255
+                    ];
                 }
 
                 // Street Line 3
-                if($this->helper->getConfig("brazilcustomerattributes/general/line_complement") && $numStreetLines == 4) {
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
-                    ['children']['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']
-                    ['children']['form-fields']['children']['street']['children'][3]['label'] = __('Complement');
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_complement")
+                        && $numStreetLines == 4) {
+                    $paymentFormChildren['street']['children'][3]['label'] = __('Complement');
                 }
 
                 // Street Prefix
                 if($this->helper->getConfig("brazilcustomerattributes/general/prefix_enabled")) {
-                    $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                    ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                    ['form-fields']['children']['street_prefix'] = [
+                    $paymentFormChildren['street_prefix'] = [
                         'component' => 'Magento_Ui/js/form/element/select',
                         'config' => [
                             'customScope' => 'billingAddress' . $paymentMethodCode . '.custom_attributes',
@@ -233,7 +240,7 @@ class LayoutProcessor
                             'options' => $this->streetprefixoptions,
                             'id' => 'street-prefix'
                         ],
-                        'dataScope' => 'billingAddress' . $paymentMethodCode . '.custom_attributes.street_prefix', //billingAddresscheckmo.city
+                        'dataScope' => 'billingAddress' . $paymentMethodCode . '.custom_attributes.street_prefix',
                         'label' => __('Street Prefix'),
                         'provider' => 'checkoutProvider',
                         'visible' => true,
@@ -246,25 +253,26 @@ class LayoutProcessor
                 }
 
                 // Company
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['company']['sortOrder'] = 118;
+                $paymentFormChildren['company']['sortOrder'] = 118;
 
                 // Zipcode
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['sortOrder'] = 40;
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['postcode']['config']['elementTmpl'] = 'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
+                $paymentFormChildren['postcode']['sortOrder'] = 40;
+                $paymentFormChildren['postcode']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
+                $paymentFormChildren['postcode']['config']['elementTmpl'] =
+                    'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
 
                 // Telephone
-                $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']
-                ['payment']['children']['payments-list']['children'][$paymentMethodCode . '-form']['children']
-                ['form-fields']['children']['telephone']['component'] = 'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+                $paymentFormChildren['telephone']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+                // Fax
+                $paymentFormChildren['fax']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+                $jsLayout['components']['checkout']['children']['steps']['children']
+                    ['billing-step']['children']['payment']['children']['payments-list']['children']
+                    [$paymentMethodCode . '-form']['children']['form-fields']['children'] = $paymentFormChildren;
             }
         }
 
