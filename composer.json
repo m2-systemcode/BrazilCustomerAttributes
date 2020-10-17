@@ -11,7 +11,7 @@
         "magento2 person type",
         "magento2 pessoa física",
         "magento2 pessoa jurídica",
-        "magento2 tipo  pessoa"
+        "magento2 tipo pessoa"
     ],
     "require": {
         "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*",
@@ -20,7 +20,7 @@
         "magedev/brazilzipcode": "*"
     },
     "type": "magento2-module",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "license": [
         "proprietary"
     ],
