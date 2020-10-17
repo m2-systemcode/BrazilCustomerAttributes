@@ -75,7 +75,7 @@ OBS: O módulo não funciona com checkout como visitante.
 #### ✓ Instalação via Composer (recomendado)
 ```
 composer require systemcode/brazilcustomerattributes
-php bin/magento module:enable
+php bin/magento module:enable SystemCode_BrazilCustomerAttributes SystemCode_Base
 php bin/magento setup:upgrade
 ```
 
