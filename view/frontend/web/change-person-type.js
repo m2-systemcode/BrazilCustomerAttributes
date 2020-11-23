@@ -47,14 +47,6 @@ define([
         _showIndividual: function () {
             $(this.options.individualContainer).show();
             $(this.options.corporateContainer).hide();
-
-            if(this.options.changeFirstnameLabel){
-                $(".field-name-firstname label span").text($.mage.__('First Name'));
-            }
-
-            if(this.options.changeLastnameLabel){
-                $(".field-name-lastname label span").text($.mage.__('Last Name'));
-            }
         },
 
         /**
@@ -64,14 +56,6 @@ define([
         _showCorporate: function () {
             $(this.options.corporateContainer).show();
             $(this.options.individualContainer).hide();
-
-            if(this.options.changeFirstnameLabel){
-                $(".field-name-firstname label span").text($.mage.__('Social Name'));
-            }
-
-            if(this.options.changeLastnameLabel){
-                $(".field-name-lastname label span").text($.mage.__('Trade Name'));
-            }
         }
     });
 
