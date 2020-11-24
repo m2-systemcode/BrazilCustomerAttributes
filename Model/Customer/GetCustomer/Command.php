@@ -16,13 +16,13 @@ use SystemCode\BrazilCustomerAttributes\Model\Customer\GetCustomer\Builders\Sear
 class Command
 {
     /** @var Data */
-    protected Data $helper;
+    protected $helper;
 
     /** @var SearchCriteria */
-    protected SearchCriteria $searchCriteriaBuilder;
+    protected $searchCriteriaBuilder;
 
     /** @var CustomerRepositoryInterface */
-    protected CustomerRepositoryInterface $customerRepository;
+    protected $customerRepository;
 
     /**
      * Command constructor.

@@ -12,7 +12,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 class SearchCriteria
 {
     /** @var SearchCriteriaBuilder */
-    protected SearchCriteriaBuilder $searchCriteriaBuilder;
+    protected $searchCriteriaBuilder;
 
     /**
      * SearchCriteria constructor.
