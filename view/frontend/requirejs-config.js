@@ -7,7 +7,9 @@ var config = {
     map: {
         '*': {
             changePersonType: 'SystemCode_BrazilCustomerAttributes/change-person-type',
-            inputMask: 'SystemCode_BrazilCustomerAttributes/jquery.mask'
+            exemptIe: 'SystemCode_BrazilCustomerAttributes/exempt-ie',
+            inputMask: 'SystemCode_BrazilCustomerAttributes/jquery.mask',
+            stringUtils: 'SystemCode_BrazilCustomerAttributes/string-utils'
         },
     },
     config: {
@@ -23,6 +25,9 @@ var config = {
             },
             'Magento_Checkout/js/action/place-order': {
                 'SystemCode_BrazilCustomerAttributes/js/action/place-order-mixin': true
+            },
+            'mage/validation': {
+                'SystemCode_BrazilCustomerAttributes/js/widget/create-customer-account-mixin': true
             }
         }
     }
