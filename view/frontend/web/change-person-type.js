@@ -13,7 +13,7 @@ define([
             individualContainer: '[data-container=type-individual]',
             corporateContainer: '[data-container=type-corporation]',
             changeFirstnameLabel: false,
-            changeLastnameLabel: false
+            changeLastnameLabel: false,
         },
 
         /**
@@ -35,7 +35,7 @@ define([
         _checkChoice: function () {
             if ($(this.options.corporateSelector).is(':checked')) {
                 this._showCorporate();
-            }  else {
+            } else {
                 this._showIndividual();
             }
         },
@@ -48,11 +48,11 @@ define([
             $(this.options.individualContainer).show();
             $(this.options.corporateContainer).hide();
 
-            if(this.options.changeFirstnameLabel){
+            if (this.options.changeFirstnameLabel) {
                 $(".field-name-firstname label span").text($.mage.__('First Name'));
             }
 
-            if(this.options.changeLastnameLabel){
+            if (this.options.changeLastnameLabel) {
                 $(".field-name-lastname label span").text($.mage.__('Last Name'));
             }
         },
@@ -65,11 +65,23 @@ define([
             $(this.options.corporateContainer).show();
             $(this.options.individualContainer).hide();
 
-            if(this.options.changeFirstnameLabel){
+            if (this.options.changeFirstnameLabel) {
+                const fieldNameSocialnameBlock = $(".field-name-socialname");
+                fieldNameSocialnameBlock.hide();
+                fieldNameSocialnameBlock.removeClass('required');
+
+                $('#socialvalue').removeAttr('data-validate');
+
                 $(".field-name-firstname label span").text($.mage.__('Social Name'));
             }
 
-            if(this.options.changeLastnameLabel){
+            if (this.options.changeLastnameLabel) {
+                const fieldNameTradenameBlock = $(".field-name-tradename");
+                fieldNameTradenameBlock.hide();
+                fieldNameTradenameBlock.removeClass('required');
+
+                $('#tradevalue').removeAttr('data-validate');
+
                 $(".field-name-lastname label span").text($.mage.__('Trade Name'));
             }
         }

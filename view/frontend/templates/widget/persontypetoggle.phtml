@@ -14,17 +14,12 @@
  */
 ?>
 <?php if($block->showCpf && $block->showCnpj): ?>
-    <?php if($block->showCpf): ?>
     <div class="field choice">
         <input type="radio" value="cpf" name="person_type" id="type-individual" data-role="type-individual" <?php echo ($block->getPersonType() == 'cpf' || $block->getPersonType() == false?'checked':'') ?> title="<?php /* @escapeNotVerified */ echo __('Individual Person') ?>" class="radio person_type" />
         <label class="label" for="type-individual"><span><?php /* @escapeNotVerified */ echo __('Individual Person') ?></span></label>
     </div>
-    <?php endif; ?>
-
-    <?php if($block->showCnpj): ?>
     <div class="field choice">
         <input type="radio" value="cnpj" name="person_type" id="type-corporation" data-role="type-corporation" <?php echo ($block->getPersonType() == 'cnpj'?'checked':'') ?> title="<?php /* @escapeNotVerified */ echo __('Corporation') ?>" class="radio person_type" />
         <label class="label" for="type-corporation"><span><?php /* @escapeNotVerified */ echo __('Corporation') ?></span></label>
     </div>
-    <?php endif; ?>
 <?php endif; ?>

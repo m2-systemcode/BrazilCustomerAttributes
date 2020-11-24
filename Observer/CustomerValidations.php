@@ -2,11 +2,15 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Observer;
 
-use \Magento\Framework\Message\ManagerInterface;
+use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Framework\Event\Observer;
 use \Magento\Framework\App\RequestInterface;
+use Magento\Framework\Event\ObserverInterface;
 use \Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\LocalizedException;
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
 use \Magento\Customer\Model\Session;
+use SystemCode\BrazilCustomerAttributes\Model\Customer\GetCustomer\Command as GetCustomerCommand;
 
 /**
  *
@@ -21,118 +25,163 @@ use \Magento\Customer\Model\Session;
  * @copyright  System Code LTDA-ME
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
+class CustomerValidations implements ObserverInterface
 {
-    private $_request;
-    private $_helper;
-    private $_session;
+    const EXEMPT_IE = 'EXEMPT';
+
+    /** @var RequestInterface */
+    private $request;
+
+    /** @var Helper */
+    private $helper;
+
+    /** @var Session */
+    private $session;
+
+    /** @var GetCustomerCommand */
+    private $getCustomerCommand;
+
+    /** @var CustomerInterface */
+    private $customer = null;
 
     public function __construct(
-        ManagerInterface $messageManager,
         RequestInterface $request,
         Helper $helper,
-        Session $session
+        Session $session,
+        GetCustomerCommand $getCustomerCommand
     ) {
-        $this->_request = $request;
-        $this->_helper = $helper;
-        $this->_session = $session;
+        $this->request = $request;
+        $this->helper = $helper;
+        $this->session = $session;
+        $this->getCustomerCommand = $getCustomerCommand;
     }
 
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    /**
+     * @param Observer $observer
+     *
+     * @throws CouldNotSaveException
+     * @throws LocalizedException
+     */
+    public function execute(Observer $observer)
     {
-        $params = $this->_request->getParams();
+        $params = $this->request->getParams();
+        $personType = $params['person_type'] ?? null;
+        $this->customer = $observer->getCustomer();
 
-        if(isset($params["person_type"]) && $params["person_type"]=="cpf"){
-            $cpf = (isset($params["cpf"])?$params["cpf"]:"");
-            $rg = (isset($params["rg"])?$params["rg"]:"");
+        if ($personType === 'cpf') {
+            $cpf = $params['cpf'] ?? '';
+            $rg  = $params['rg']  ?? '';
 
-            if($cpf!="") {
-                if (!$this->_helper->validateCPF($cpf)) {
-                    throw new CouldNotSaveException(
-                        __("%1 is invalid.", "CPF")
-                    );
-                }
-            }
-
-            if(!$this->_validateInput($cpf, "cpf", "cpf/cpf_show")){
+            if ($cpf !== '' && ($this->helper->validateCPF($cpf) === false)) {
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "CPF")
+                    __('%1 is invalid.', 'CPF')
                 );
             }
 
-            if(!$this->_validateInput($rg, "rg", "cpf/rg_show")){
+            if ($this->_validateInput($cpf, 'cpf', 'cpf/cpf_show') === false){
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "RG")
+                    __('%1 already in use.', 'CPF')
                 );
             }
 
-        }else if(isset($params["person_type"]) && $params["person_type"]=="cnpj"){
-            $cnpj = (isset($params["cnpj"])?$params["cnpj"]:"");
-            $ie = (isset($params["ie"])?$params["ie"]:"");
-            $socialName = (isset($params["socialname"])?$params["socialname"]:"");
-            $tradeName = (isset($params["tradename"])?$params["tradename"]:"");
-
-            if($cnpj!=""){
-                if(!$this->_helper->validateCNPJ($cnpj)){
-                    throw new CouldNotSaveException(
-                        __("%1 is invalid.", "CNPJ")
-                    );
-                }
+            if ($this->_validateInput($rg, 'rg', 'cpf/rg_show') === false) {
+                throw new CouldNotSaveException(
+                    __('%1 already in use.', 'RG')
+                );
+            }
+        } elseif ($personType === 'cnpj') {
+            if ($this->helper->copySocialName()) {
+                $firstName = $params['firstname'];
+                $params['socialname'] = $firstName;
+                $this->customer->setData('socialname', $firstName);
             }
 
-            if(!$this->_validateInput($cnpj, "cnpj", "cnpj/cnpj_show")){
+            if ($this->helper->copyTradeName()) {
+                $lastname = $params['lastname'];
+                $params['tradename'] = $lastname;
+                $this->customer->setData('tradename', $lastname);
+            }
+
+            $cnpj = $params['cnpj'] ?? '';
+            $ie   = strtoupper($params['ie'] ?? __(self::EXEMPT_IE));
+            $socialName = $params['socialname'] ?? '';
+            $tradeName  = $params['tradename']  ?? '';
+
+            if ($cnpj !== '' && ($this->helper->validateCNPJ($cnpj) === false)) {
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "CNPJ")
+                    __('%1 is invalid.', 'CNPJ')
                 );
             }
 
-            if(!$this->_validateInput($ie, "ie", "cnpj/ie_show")){
+            if ($this->_validateInput($cnpj, 'cnpj', 'cnpj/cnpj_show') === false) {
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "ie")
+                    __('%1 already in use.', 'CNPJ')
                 );
             }
 
-            if(!$this->_validateInput($socialName, "socialname", "cnpj/socialname_show")){
+            if (
+                $ie !== strtoupper(__(self::EXEMPT_IE))
+                && $this->_validateInput($ie, 'ie', 'cnpj/ie_show') === false
+            ) {
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "Social Name")
+                    __('%1 already in use.', 'IE')
                 );
             }
 
-            if(!$this->_validateInput($tradeName, "tradename", "cnpj/tradename_show")){
+            if ($this->_validateInput($socialName, 'socialname', 'cnpj/socialname_show') === false) {
                 throw new CouldNotSaveException(
-                    __("%1 already in use.", "Trade Name")
+                    __('%1 already in use.', 'Social Name')
+                );
+            }
+
+            if ($this->_validateInput($tradeName, 'tradename', 'cnpj/tradename_show') === false) {
+                throw new CouldNotSaveException(
+                    __('%1 already in use.', 'Trade Name')
                 );
             }
         }
     }
 
-    protected function _validateInput($value, $fieldName, $path){
-        $show = $this->_helper->getConfig("brazilcustomerattributes/".$path);
-        if($show == "req" || $show == "requni"){
-            if($value == ""){
+    /**
+     * @param $value
+     * @param $fieldName
+     * @param $path
+     *
+     * @return bool
+     * @throws LocalizedException
+     */
+    protected function _validateInput($value, $fieldName, $path): bool
+    {
+        $show = $this->helper->getConfig('brazilcustomerattributes/'.$path);
+
+        if ($show === 'req' || $show === 'requni') { // checks if is required
+            if ($value === '') {
                 return false;
             }
-            //verify if is unique
-            if($show == "requni"){
-                if($this->_session->getCustomer()->getId()!="" && $this->_session->getCustomer()->getData($fieldName) == $value){ //verifico se é ele mesmo que utiliza
-                    return true;
-                }
-
-                //check if field already being used
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
-                $customerObj = $objectManager->create('Magento\Customer\Model\Customer')->getCollection();
-                $customerObj->addFieldToFilter($fieldName, $value);
-
-
-                foreach ($customerObj as $customer){
-                    if($customer->getCreatedAt()){
-                        return true;
-                    }
-                    return false;
-                }
-            }
         }
+
+        if ($show === 'requni' || $show === 'optuni') { // checks if is unique
+            return (
+                (
+                    $this->session->getCustomer()->getId() !== ''
+                    && $this->session->getCustomer()->getData($fieldName) === $value
+                ) || $this->isUnique($fieldName)
+            );
+        }
+
         return true;
+    }
+
+    /**
+     * @param string $fieldName
+     *
+     * @return bool
+     * @throws LocalizedException
+     */
+    protected function isUnique(string $fieldName): bool
+    {
+        $customerList = $this->getCustomerCommand->execute($this->customer, $fieldName);
+
+        return $customerList->getTotalCount() <= 0;
     }
 }

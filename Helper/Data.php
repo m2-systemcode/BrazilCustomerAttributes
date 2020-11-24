@@ -2,6 +2,8 @@
 
 namespace SystemCode\BrazilCustomerAttributes\Helper;
 
+use Magento\Store\Model\ScopeInterface;
+
 /**
  *
  * Helper for validations and commons functions
@@ -17,12 +19,30 @@ namespace SystemCode\BrazilCustomerAttributes\Helper;
  */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    const ACCOUNT_SHARE_SCOPE_FLAG_PATH  = 'customer/account_share/scope';
+    const COPY_CNPJ_SOCIAL_NAME = 'brazilcustomerattributes/cnpj/copy_firstname';
+    const COPY_CNPJ_TRADE_NAME = 'brazilcustomerattributes/cnpj/copy_lastname';
 
     public function getConfig($config_path)
     {
         return $this->scopeConfig->getValue(
             $config_path,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * @param string $config_path
+     * @param null|mixed $storeId
+     *
+     * @return bool
+     */
+    protected function isSetFlag(string $config_path, $storeId = null): bool
+    {
+        return $this->scopeConfig->isSetFlag(
+            $config_path,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
         );
     }
 
@@ -148,5 +168,29 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $region->getId();
         }
 
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccountSharedByWebsite(): bool
+    {
+        return $this->isSetFlag(self::ACCOUNT_SHARE_SCOPE_FLAG_PATH);
+    }
+
+    /**
+     * @return bool
+     */
+    public function copySocialName(): bool
+    {
+        return $this->isSetFlag(self::COPY_CNPJ_SOCIAL_NAME);
+    }
+
+    /**
+     * @return bool
+     */
+    public function copyTradeName(): bool
+    {
+        return $this->isSetFlag(self::COPY_CNPJ_TRADE_NAME);
     }
 }
