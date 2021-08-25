@@ -3,6 +3,7 @@
 namespace SystemCode\BrazilCustomerAttributes\Plugin\Checkout;
 
 use SystemCode\BrazilCustomerAttributes\Helper\Data as Helper;
+use Magento\Checkout\Helper\Data;
 
 /**
  * Model to add label each address line
@@ -41,10 +42,12 @@ class LayoutProcessor
      */
     public function __construct(
         Helper $helper,
-        \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix
+        \SystemCode\BrazilCustomerAttributes\Model\Config\Source\Streetprefix $streetprefix,
+        Data $checkoutDataHelper
     ) {
         $this->helper = $helper;
         $this->streetprefix = $streetprefix;
+        $this->checkoutDataHelper = $checkoutDataHelper;
     }
 
     /**
@@ -60,7 +63,12 @@ class LayoutProcessor
         $numStreetLines = $this->helper->getConfig("customer/address/street_lines");
         $this->setStreetPrefixOptions();
         $jsLayout = $this->getShippingFormFields($jsLayout, $numStreetLines);
-        $jsLayout = $this->getBillingFormFields($jsLayout, $numStreetLines);
+
+        if ($this->checkoutDataHelper->isDisplayBillingOnPaymentMethodAvailable()) {
+            $jsLayout = $this->getBillingFormFields($jsLayout, $numStreetLines);
+        } else {
+            $jsLayout = $this->getBillingFormFieldsOnPage($jsLayout, $numStreetLines);
+        }
 
         return $jsLayout;
     }
@@ -278,4 +286,95 @@ class LayoutProcessor
 
         return $jsLayout;
     }
+
+    public function getBillingFormFieldsOnPage($jsLayout, $numStreetLines)
+    {
+        if(isset($jsLayout['components']['checkout']['children']['steps']['children']['billing-step']
+            ['children']['payment']['children']['afterMethods']['children']['billing-address-form'])
+        ) {
+                $paymentFormChildren = $jsLayout['components']['checkout']['children']['steps']['children']
+                    ['billing-step']['children']['payment']['children']['afterMethods']['children']['billing-address-form']['children']['form-fields']['children'];
+
+                // Street Label
+                $paymentFormChildren['street']['label'] = '';
+                $paymentFormChildren['street']['required'] = false;
+
+                // Street Line 0
+                $paymentFormChildren['street']['children'][0]['label'] = __('Address');
+
+                // Street Line 1
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_number")
+                        && $numStreetLines >= 2) {
+                    $paymentFormChildren['street']['children'][1]['label'] = __('Number');
+                    $paymentFormChildren['street']['children'][1]['validation'] = [
+                        'required-entry' => true,
+                        'min_text_len‌​gth' => 1,
+                        'max_text_length' => 255
+                    ];
+                }
+
+                // Street Line 2
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_neighborhood")
+                        && $numStreetLines >= 3) {
+                    $paymentFormChildren['street']['children'][2]['label'] = __('Neighborhood');
+                    $paymentFormChildren['street']['children'][2]['validation'] = [
+                        'required-entry' => true,
+                        'min_text_len‌​gth' => 1,
+                        'max_text_length' => 255
+                    ];
+                }
+
+                // Street Line 3
+                if($this->helper->getConfig("brazilcustomerattributes/general/line_complement")
+                        && $numStreetLines == 4) {
+                    $paymentFormChildren['street']['children'][3]['label'] = __('Complement');
+                }
+
+                // Street Prefix
+                if($this->helper->getConfig("brazilcustomerattributes/general/prefix_enabled")) {
+                    $paymentFormChildren['street_prefix'] = [
+                        'component' => 'Magento_Ui/js/form/element/select',
+                        'config' => [
+                            'customScope' => 'billingAddress.shared.custom_attributes',
+                            'template' => 'ui/form/field',
+                            'options' => $this->streetprefixoptions,
+                            'id' => 'street-prefix'
+                        ],
+                        'dataScope' => 'billingAddress.custom_attributes.street_prefix',
+                        'label' => __('Street Prefix'),
+                        'provider' => 'checkoutProvider',
+                        'visible' => true,
+                        'validation' => [
+                            'required-entry' => true,
+                        ],
+                        'sortOrder' => 65,
+                        'id' => 'street-prefix'
+                    ];
+                }
+
+                // Company
+                $paymentFormChildren['company']['sortOrder'] = 118;
+
+                // Zipcode
+                $paymentFormChildren['postcode']['sortOrder'] = 40;
+                $paymentFormChildren['postcode']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/zip-code';
+                $paymentFormChildren['postcode']['config']['elementTmpl'] =
+                    'SystemCode_BrazilCustomerAttributes/shipping-address/address-renderer/zip-code';
+
+                // Telephone
+                $paymentFormChildren['telephone']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+                // Fax
+                $paymentFormChildren['fax']['component'] =
+                    'SystemCode_BrazilCustomerAttributes/js/shipping-address/address-renderer/telephone';
+
+                $jsLayout['components']['checkout']['children']['steps']['children']
+                    ['billing-step']['children']['payment']['children']['afterMethods']['children']['billing-address-form']['children']['form-fields']['children'] = $paymentFormChildren;
+            
+        }
+
+        return $jsLayout;
+    }    
 }
