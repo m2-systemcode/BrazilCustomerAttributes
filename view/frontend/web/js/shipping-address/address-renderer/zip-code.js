@@ -96,7 +96,7 @@ define([
                         }
                     }
                     jquery('body').loader('hide');
-                }).error(function(){
+                }).fail(function(){
                     jquery('body').loader('hide');
                 });
             }else{
